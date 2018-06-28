@@ -1,0 +1,264 @@
+<!-- Modal -->
+<div class="modal fade" id="addMethodModal" tabindex="-1" role="dialog" aria-labelledby="addMethodModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addMethodModalLabel">Thêm mới phương pháp/ công thức
+          <button class="btn btn-sm" [ngClass]="{
+            'btn-outline-primary': loai==='phương pháp', 
+            'btn-outline-warning': loai!=='phương pháp'
+          }" type="button" (click)="toggleLoai()">{{ loai }}
+            <i class="fa fa-refresh"></i>
+          </button>
+
+          <button class="btn btn-sm btn-outline-info" type="button" (click)="toggleTree()">Thêm đường dẫn
+          </button>
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="display:none">
+          <div id="alert-method-content"></div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form class="form needs-validation" novalidate>
+          <!-- lựa chọn -->
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend">
+                    <span [ngStyle]="{
+                      'background-color': loai==='phương pháp' ? color1_bg : color2_bg,
+                      'color': loai==='phương pháp' ? color1_color : color2_color,
+                      'border-color': loai==='phương pháp' ? color1_border : color2_border
+                    }" class="input-group-text pointer" id="inputGroup-sizing-sm">Môn:</span>
+                  </div>
+                  <select class="form-control form-control-sm" id="monModal">
+                    <option *ngFor="let mon of mons">{{mon}}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend">
+                    <button class="btn" [ngClass]="{
+                      'btn-outline-primary': loai==='phương pháp', 
+                      'btn-outline-warning': loai!=='phương pháp'
+                    }" type="button" (click)="changeLopChuyende()">{{ LopChuyende }}
+                      <i class="fa fa-refresh"></i>
+                    </button>
+                  </div>
+                  <select *ngIf="checkLopChuyende" class="form-control form-control-sm" id="lopModal">
+                    <option *ngFor="let lop of lops">{{ lop }}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div *ngIf="checkLopChuyende" class="col-md-3">
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend">
+                    <span [ngStyle]="{
+                      'background-color': loai==='phương pháp' ? color1_bg : color2_bg,
+                      'color': loai==='phương pháp' ? color1_color : color2_color,
+                      'border-color': loai==='phương pháp' ? color1_border : color2_border
+                    }" class="input-group-text" id="inputGroup-sizing-sm">Chương:</span>
+                  </div>
+                  <select class="form-control form-control-sm" id="chuongModal">
+                    <option *ngFor="let chuong of chuongs">{{ chuong }}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div *ngIf="checkLopChuyende" class="col-md-3">
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend">
+                    <span [ngStyle]="{
+                      'background-color': loai==='phương pháp' ? color1_bg : color2_bg,
+                      'color': loai==='phương pháp' ? color1_color : color2_color,
+                      'border-color': loai==='phương pháp' ? color1_border : color2_border
+                    }" class="input-group-text" id="inputGroup-sizing-sm">Bài:</span>
+                  </div>
+                  <select class="form-control form-control-sm" id="baiModal">
+                    <option *ngFor="let bai of bais">{{bai}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ô để thêm lựa chọn -->
+          <div *ngIf="tree" class="form-group">
+            <div class="row">
+              <div class="col-md-3">
+                <label for="basic-url">Môn:</label>
+                <div class="input-group input-group-sm">
+                  <input id="monPath" type="text" class="form-control" placeholder="môn" list="listMon">
+                  <div class="input-group-append">
+                    <span class="btn btn-danger input-group-text pointer" (click)="MLCB_DeleteHandle('mon')">
+                      <i class="fa fa-trash"></i>
+                    </span>
+                    <span class="btn btn-success input-group-text pointer" (click)="themMon()">
+                      <i class="fa fa-save"></i>
+                    </span>
+                  </div>
+                  <datalist id="listMon">
+                    <option *ngFor="let mon of mons" value="{{mon}}"></option>
+                  </datalist>
+                </div>
+                <div id="monPathFeedbackError" class="invalid-feedback">{{messageMonError}}</div>
+                <div id="monPathFeedbackSuccess" class="valid-feedback">{{messageMonSuccess}}</div>
+              </div>
+
+              <!-- LOP - Class -->
+              <div class="col-md-3">
+                <label for="basic-url">Lớp:</label>
+                <div class="input-group input-group-sm">
+                  <input id="lopPath" type="text" class="form-control" placeholder="lớp" list="listLop">
+                  <datalist id="listLop">
+                    <option *ngFor="let lop of lops" value="{{lop}}"></option>
+                  </datalist>
+                  <div class="input-group-append">
+                    <span class="btn btn-danger input-group-text pointer" (click)="MLCB_DeleteHandle('lop')">
+                      <i class="fa fa-trash"></i>
+                    </span>
+                    <span class="btn btn-success input-group-text pointer" (click)="themLop()">
+                      <i class="fa fa-save"></i>
+                    </span>
+                  </div>
+                </div>
+                <div id="lopPathFeedbackError" class="invalid-feedback">{{messageLopError}}</div>
+                <div id="lopPathFeedbackSuccess" class="valid-feedback">{{messageLopSuccess}}</div>
+              </div>
+
+              <div class="col-md-3">
+                <label for="basic-url">Chương:</label>
+                <div class="input-group input-group-sm">
+                  <input id="chuongPath" type="text" class="form-control" placeholder="chương" list="listChuong">
+                  <datalist id="listChuong">
+                    <option *ngFor="let chuong of chuongs" value="{{chuong}}"></option>
+                  </datalist>
+                  <div class="input-group-append">
+                    <span class="btn btn-danger input-group-text pointer" (click)="MLCB_DeleteHandle('chuong')">
+                      <i class="fa fa-trash"></i>
+                    </span>
+                    <span class="btn btn-success input-group-text pointer" (click)="themChuong()">
+                      <i class="fa fa-save"></i>
+                    </span>
+                  </div>
+                </div>
+                <div id="chuongPathFeedbackError" class="invalid-feedback">{{messageChuongError}}</div>
+                <div id="chuongPathFeedbackSuccess" class="valid-feedback">{{messageChuongSuccess}}</div>
+              </div>
+
+              <div class="col-md-3">
+                <label for="basic-url">Bài:</label>
+                <div class="input-group input-group-sm">
+                  <input id="baiPath" type="text" class="form-control" placeholder="bài" list="listBai">
+                  <div class="input-group-append">
+                    <span class="btn btn-danger input-group-text pointer" (click)="MLCB_DeleteHandle('bai')">
+                      <i class="fa fa-trash"></i>
+                    </span>
+                    <span class="btn btn-success input-group-text pointer" (click)="themBai()">
+                      <i class="fa fa-save"></i>
+                    </span>
+                  </div>
+                  <datalist id="listBai">
+                    <option *ngFor="let bai of bais" value="{{bai}}"></option>
+                  </datalist>
+                </div>
+                <div id="baiPathFeedbackError" class="invalid-feedback">{{messageBaiError}}</div>
+                <div id="baiPathFeedbackSuccess" class="valid-feedback">{{messageBaiSuccess}}</div>
+              </div>
+            </div>
+
+          </div>
+          <!-- Input thêm tên -->
+          <div class="form-group">
+            <label for="method-name">Tên: </label>
+            <input [(ngModel)]="method.title" name="title" class="form-control" id="method-name" type="text" placeholder="Tên" required>
+            <div id="method-name-feedback" class="invalid-feedback">Tên không được để trống</div>
+          </div>
+
+          <!-- Input mô tả method -->
+          <div class="form-group">
+            <label for="method-descriptions">Mô tả phương pháp:</label>
+            <textarea [(ngModel)]="method.mota" name="mota" id="mota" rows="3" class="form-control" placeholder="Miêu tả ngắn gọn về phương pháp, công thức"></textarea>
+          </div>
+
+          <!-- Ô nhập hình lý thuyết -->
+          <div id="lythuyet-input" class="form-group">
+            <label>Lý thuyết:</label>
+            <!-- Button add, minus input template here -->
+            <div class="mb-2">
+              <button class="btn btn-outline-danger btn-sm" (click)="addInputLyThuyet()">
+                <i class="fa fa-plus"></i>
+              </button>
+              <button class="btn btn-outline-danger btn-sm" (click)="deleteInputLyThuyet()">
+                <i class="fa fa-minus"></i>
+              </button>
+              <button class="btn btn-sm btn-outline-info" type="button" (click)="toggleNhapTay()" data-toggle="tooltip" data-placement="top"
+                title="công cụ nhập tay">Chuyển
+                <i class="fa fa-refresh"></i>
+              </button>
+              <button [hidden]="displayContentNhapTay" class="btn btn-sm btn-outline-warning" type="button" (click)="xemContentNhapTay()">xem nội dung nhập</button>
+            </div>
+
+            <!-- <app-ckeditor id="nhaptay" [@fadeIn]="nhaptayHidden"></app-ckeditor> -->
+            <div [hidden]="nhaptayHidden" id="nhaptay" class="mb-2">
+              <app-ckeditor (change)="xemContentNhapTay()"></app-ckeditor>
+            </div>
+
+            <!-- Input lythuyet image here -->
+
+          </div>
+
+          
+
+          <div class="form-group">
+            <div id="lythuyet-img" class="row">
+              <!-- display img and delete button here -->
+
+            </div>
+          </div>
+          
+          <!-- Display content from Nhap Tay -->
+          <div [hidden]="displayContentNhapTay" class="form-group" id="lythuyet-nhaptay">
+
+          </div>
+          <!-- Video Input - Ô nhập video -->
+          <div id="video-input" class="form-group">
+            <label for="">Video:</label>
+            <!-- Button add, minus input template here -->
+            <div class="mb-2">
+              <button class="btn btn-outline-danger btn-sm" (click)="addInputVideo()">
+                <i class="fa fa-plus"></i>
+              </button>
+              <button class="btn btn-outline-danger btn-sm" (click)="deleteInputVideo()">
+                <i class="fa fa-minus"></i>
+              </button>
+            </div>
+            <!-- Video template will be add here -->
+
+          </div>
+
+          <div class="form-group">
+            <div id="video-url" class="row">
+              <!-- display img and delete button here -->
+
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" (click)="luu()">Lưu</button>
+      </div>
+    </div>
+  </div>
+</div>

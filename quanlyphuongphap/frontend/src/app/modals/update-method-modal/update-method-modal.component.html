@@ -1,0 +1,168 @@
+<!-- Modal -->
+<div class="modal fade" id="updateMethodModal" tabindex="-1" role="dialog" aria-labelledby="updateMethodModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateMethodModalLabel">Update {{method.method}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="display:none">
+          <div id="alert-method-content"></div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <form class="form needs-validation" novalidate>
+          <!-- Hiển thị đường dẫn -->
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend">
+                    <span [ngStyle]="{
+                      'background-color': method.method==='phương pháp' ? color1_bg : color2_bg,
+                      'color': method.method==='phương pháp' ? color1_color : color2_color,
+                      'border-color': method.method==='phương pháp' ? color1_border : color2_border
+                    }" class="input-group-text" id="inputGroup-sizing-sm">Tại môn:</span>
+                  </div>
+                  <input class="form-control" type="text" value="{{method.mon}}" disabled>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend">
+                    <span [ngStyle]="{
+                      'background-color': method.method==='phương pháp' ? color1_bg : color2_bg,
+                      'color': method.method==='phương pháp' ? color1_color : color2_color,
+                      'border-color': method.method==='phương pháp' ? color1_border : color2_border
+                    }" class="input-group-text" id="inputGroup-sizing-sm">{{ method.loai }}</span>
+                  </div>
+                  <input *ngIf="method.loai === 'Lớp'" class="form-control form-control-sm" type="text" value="{{method.lop}}" disabled>
+                </div>
+              </div>
+              <div *ngIf="method.loai == 'Lớp'" class="col-md-3">
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend">
+                    <span [ngStyle]="{
+                      'background-color': method.method==='phương pháp' ? color1_bg : color2_bg,
+                      'color': method.method==='phương pháp' ? color1_color : color2_color,
+                      'border-color': method.method==='phương pháp' ? color1_border : color2_border
+                    }" class="input-group-text" id="inputGroup-sizing-sm">Chương:</span>
+                  </div>
+
+                  <input class="form-control" type="text" value="{{method.chuong}}" disabled>
+                </div>
+              </div>
+
+              <div *ngIf="method.loai == 'Lớp'" class="col-md-3">
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend">
+                    <span [ngStyle]="{
+                      'background-color': method.method==='phương pháp' ? color1_bg : color2_bg,
+                      'color': method.method==='phương pháp' ? color1_color : color2_color,
+                      'border-color': method.method==='phương pháp' ? color1_border : color2_border
+                    }" class="input-group-text" id="inputGroup-sizing-sm">Bài:</span>
+                  </div>
+
+                  <input class="form-control" type="text" value="{{method.bai}}" disabled>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Title -->
+          <div class="form-group">
+            <label for="method-name">Tên: </label>
+            <input class="form-control" id="method-name-update" type="text" placeholder="Tên" value="{{method.title}}" required>
+            <div id="method-name-feedback-update" class="invalid-feedback">Tên không được để trống</div>
+          </div>
+
+          <!-- Input mô tả method -->
+          <div class="form-group">
+            <label for="method-descriptions">Mô tả phương pháp:</label>
+            <textarea [(ngModel)]="method.mota" name="mota" id="mota" rows="3" class="form-control" placeholder="Miêu tả ngắn gọn về phương pháp, công thức"></textarea>
+          </div>
+
+          <!-- Ô nhập hình lý thuyết -->
+          <div class="form-group">
+            <label>Lý thuyết:</label>
+
+            <!-- Button add, minus input template here -->
+            <div class="mb-2">
+              <button class="btn btn-outline-danger btn-sm" (click)="addInputLyThuyet()">
+                <i class="fa fa-plus"></i>
+              </button>
+              <button class="btn btn-outline-danger btn-sm" (click)="deleteInputLyThuyet()">
+                <i class="fa fa-minus"></i>
+              </button>
+              <button class="btn btn-sm btn-outline-info" type="button" (click)="toggleNhapTay()" data-toggle="tooltip" data-placement="top"
+                title="công cụ nhập tay">Chuyển
+                <i class="fa fa-refresh"></i>
+              </button>
+              <button [hidden]="displayContentNhapTay" class="btn btn-sm btn-outline-warning" type="button" (click)="xemContentNhapTay()">xem nội dung nhập</button>
+            </div>
+            <!-- <app-ckeditor id="nhaptay" [@fadeIn]="nhaptayHidden"></app-ckeditor> -->
+            <div [hidden]="nhaptayHidden" id="nhaptay-update" class="mb-2">
+              <app-ckeditor-update></app-ckeditor-update>
+            </div>
+
+            <!-- Input lythuyet image here -->
+            <div id="lythuyet-input-update">
+
+            </div>
+            <div id="hinh-feedback-update" class="invalid-feedback">Hình không được để trống</div>
+          </div>
+
+
+
+          <div class="form-group">
+            <div id="lythuyet-img-update" class="row">
+              <!-- display img and delete button here -->
+
+            </div>
+          </div>
+
+          <!-- Display content from Nhap Tay -->
+          <div [hidden]="displayContentNhapTay" class="form-group" id="lythuyet-nhaptay-update">
+
+          </div>
+
+          <!-- Video Input - Ô nhập video -->
+          <div class="form-group">
+            <label for="">Video:</label>
+
+            <!-- Button add, minus input template here -->
+            <div class="mb-2">
+              <button class="btn btn-outline-danger btn-sm" (click)="addInputVideo()">
+                <i class="fa fa-plus"></i>
+              </button>
+              <button class="btn btn-outline-danger btn-sm" (click)="deleteInputVideo()">
+                <i class="fa fa-minus"></i>
+              </button>
+            </div>
+            <!-- Video template will be add here -->
+            <div id="video-input-update">
+
+            </div>
+            <div id="video-feedback-update" class="invalid-feedback">Video không được để trống</div>
+          </div>
+          <div class="form-group">
+            <div id="video-url-update" class="row">
+              <!-- display img and delete button here -->
+
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-warning" (click)="xoaMethod()">Xóa</button>
+        <button type="submit" class="btn btn-primary" (click)="updateMethod()">Lưu</button>
+      </div>
+    </div>
+  </div>
+</div>

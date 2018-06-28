@@ -1,0 +1,36 @@
+<!-- header  -->
+<app-header #header 
+    (truyenLoaiToAddModal)="truyenLoaiToAddModal($event)" 
+    (truyenLoaiToSidebar)="truyenLoaiToSidebar($event)"
+    (queryMethodTree)="queryMethodTree($event)"
+    (queryMethod)="queryMethod($event)"
+    (truyenMethodsToSidebar)="truyenMethodsToSidebar($event)"
+    (truyenBaoLoisToSideBar)="truyenBaoLoisToSideBar($event)">
+</app-header>
+<app-sidebar #sidebar 
+    (truyenLoaiToAddModal)="truyenLoaiToAddModal($event)" 
+    (truyenLoaiToHeader)="truyenLoaiToHeader($event)"
+    (truyenMethodToDisplay)="truyenMethodToDisplay($event)"
+    (goToBottom)="goToBottom($event)">
+</app-sidebar>
+
+<section class="main-container">
+    <form class="form">
+        <div class="form-group">
+            <app-nav-filter #navFilter 
+                (truyenMethodsToSidebar)="truyenMethodsToSidebar($event)"
+                (truyenMethodToPhuongPhap)="truyenMethodToDisplay($event)">
+            </app-nav-filter>
+        </div>
+    </form>
+    <app-phuongphap #phuongphap (truyenMethodToUpdate)="truyenMethodToUpdate($event)"
+        (truyenXoaBaoLoiToHeader)="truyenXoaBaoLoiToHeader($event)">
+    </app-phuongphap>
+    <router-outlet></router-outlet>
+</section>
+
+<!--  -->
+<app-add-method-modal #addMethodModal (queryMethodToUpdate)="queryMethodToUpdate($event)"></app-add-method-modal>
+<app-update-method-modal #updateMethodModal 
+    (truyenXoaBaoLoiToHeader)="truyenXoaBaoLoiToHeader($event)"
+    (queryMethodToUpdate)="queryMethodToUpdate($event)"></app-update-method-modal>

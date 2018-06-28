@@ -1,0 +1,57 @@
+#widget-ghinho {
+  margin: 0;
+  padding: 0;
+  width: 400px;
+  // height: 200px;
+  position: absolute;
+  opacity: 1;
+  // display: none;
+  border-radius: 5px;
+  background: rgba(157, 252, 252, 0.541);
+}
+
+.widget-title {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  padding: 10px;
+  background-color: #59bc65;
+  color: white;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  &__text {
+    font-weight: 600;
+  }
+  h4 {
+    font-size: 15px;
+  }
+}
+
+.widget-lythuyet {
+  &__text {
+    margin-top: 7px;
+    margin-left: 7px;
+    font-family: 'Times New Roman';
+    color: #dc3545;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  &__image {
+    width: 100%;
+  }
+  &__video {
+    width: 100%;
+  }
+}
+
+.closeWidgetBtn {
+  cursor: pointer;
+  padding: 2px 3px;
+  transition: all 0.3s;
+  &:hover {
+    color: #467a4c;
+    transform: scale(1.2)
+  }
+}

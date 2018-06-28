@@ -1,0 +1,55 @@
+
+:host .navbar {
+  background-color: #087090;
+}
+:host .navbar .navbar-brand {
+  color: #fff;
+}
+:host .navbar .nav-item > a {
+  color: rgb(223, 223, 223);
+}
+:host .navbar .nav-item > a:hover {
+  color: #fff;
+}
+:host .messages {
+  width: 300px;
+}
+:host .messages .media {
+  border-bottom: 1px solid #ddd;
+  padding: 5px 10px;
+}
+:host .messages .media:last-child {
+  border-bottom: none;
+}
+:host .messages .media-body h5 {
+  font-size: 13px;
+  font-weight: 600;
+}
+:host .messages .media-body .small {
+  margin: 0;
+}
+:host .messages .media-body .last {
+  font-size: 12px;
+  margin: 0;
+}
+
+
+:host .active {
+  color: white !important;
+}
+
+:host .phuongphap {
+  background-color: #0069d9;
+  color: #fff;
+  border-color:#0062cc;
+}
+:host .congthuc {
+  background-color: #ffc107;
+  color: #212529 !important;
+  border-color: #ffc107;  
+}
+:host .baoloi {
+  background-color: #17a2b8;
+  border-color: #17a2b8;  
+}
+  

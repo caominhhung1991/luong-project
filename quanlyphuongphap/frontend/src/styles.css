@@ -1,0 +1,87 @@
+/* You can add global styles to this file, and also import other style files */
+/* color: #384047; 
+color: #004085;*/
+h4 {
+    font-family: 'Roboto', sans-serif;
+    color: red;
+    font-size: 23px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+.hover-darkred:hover {
+    color: darkred;
+}
+.fa-plus:hover {
+    color: darkred;
+}
+
+.huong-dan p {
+    margin: 1px 0;
+}
+
+#lythuyet-nhaptay > p {
+    margin-bottom: 3px !important;
+}
+@media screen and (max-width: 992px) {
+    .push-right .sidebar {
+      left: 200px !important;
+    }
+  }
+
+/* add-method-modal component */
+.container_ {
+    position: relative;
+}
+
+.image {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
+
+.video {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
+
+.videoURL {
+    border: 1px solid rgb(148, 148, 148);
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.container_:hover .image {
+    opacity: 0.3;
+}
+
+.container_:hover .video {
+    opacity: 0.3;
+}
+
+.container_:hover .middle {
+    opacity: 1;
+}
+
+#btn-xoa1, #btn-xoa2, #btn-xoa3 {
+    display: none;
+}

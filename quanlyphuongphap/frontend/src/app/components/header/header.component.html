@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg fixed-top">
+  <a class="navbar-brand" href="#">Ghi Chú</a>
+  <button class="navbar-toggler" type="button" (click)="toggleSidebar()">
+    <!-- <span class="navbar-toggler-icon"></span> -->
+    <i class="fa fa-bars text-muted" aria-hidden="true"></i>
+  </button>
+  <div class="collapse navbar-collapse">
+    <form class="form-inline my-2 my-lg-0">
+      <!-- Search Method -->
+      <input class="form-control mr-sm-2" type="text" id="searchMethod" (change)="searchMethod()" placeholder="Tìm kiếm...">
+      <div class="nav-item">
+        <a class="nav-link btn" [ngClass]="{
+          'active': loai==='phương pháp',
+          'phuongphap': loai==='phương pháp'
+        }" (click)="[choose('phương pháp'), truyenLoaiToSidebarEmit(), queryMethodFunc()]" href="javascript:void(0)" >Phương pháp</a>
+      </div> 
+      <div class="nav-item">
+        <a class="nav-link btn" [ngClass]="{
+          'active': loai==='công thức',
+          'congthuc': loai==='công thức'
+        }"  (click)="[choose('công thức'), truyenLoaiToSidebarEmit(), queryMethodFunc()]" href="javascript:void(0)" >Công thức</a>
+      </div>
+      <div *ngIf="admin" class="nav-item">
+          <a class="nav-link btn" [ngClass]="{
+            'active': baoloi==='báo lỗi',
+            'baoloi': baoloi==='báo lỗi'
+          }"  (click)="[chooseBaoLoi('báo lỗi')]" href="javascript:void(0)" >
+            Báo lỗi <span class="badge badge-light">{{baolois_length}}</span></a>
+        </div>
+    </form>
+    <ul class="navbar-nav ml-auto">
+      <li><button class="btn btn-danger btn-sm mt-2" (click)="logout()">Logout</button></li>
+      <li *ngIf="admin" class="nav-item">
+        <a href="javascript:void(0)" id="themMethod" class="nav-link mt-1" style="padding: 0.375rem 1rem !important; border-color: #999;" (click)="truyenLoaiToModalEmit()" data-toggle="modal" data-target="#addMethodModal">Thêm {{loai}}</a>
+      </li> &nbsp;
+      <!-- <li class="nav-item">
+          <a href="javascript:void(0)" class="nav-link mt-1" style="padding: 0.375rem 1rem !important; border-color: #999;" data-toggle="modal" data-target="#addBaoLoiTestModal">Thêm báo lỗi test</a>
+        </li> &nbsp; -->
+    </ul>
+  </div>
+</nav>

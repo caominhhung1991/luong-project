@@ -1,0 +1,57 @@
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
+    <div class="list-group">
+        <span *ngIf="baoloi != 'Báo lỗi'">
+            <div *ngFor="let method of methods" class="methods">
+                <a [ngStyle]="{ 
+                            'color': methodSelected===method ? 'white': '#F4F4F4',
+                            'background-color': methodSelected===method ? '#0CA2D0':'transparent'
+                         }" href="javascript:void(0)" (click)="chooseMethod(method)" class="list-group-item">
+                    {{ method.title }}
+                </a>
+            </div>
+        </span>
+
+        <span *ngIf="baoloi== 'Báo lỗi'">
+            <div *ngFor="let baoloi of baolois" class="baolois">
+                <a [ngStyle]="{ 
+                            'color': baoloiSelected===baoloi ? 'white':'#F4F4F4',
+                            'background-color': baoloiSelected===baoloi ? '#151515':'transparent'
+                         }" href="javascript:void(0)" (click)="[chooseBaoLoi(baoloi), goToBottomEmit()]" class="list-group-item">
+                    {{ baoloi.title }}
+                </a>
+            </div>
+        </span>
+
+
+        <div *ngIf="admin" class="header-fields">
+            <a href="javascript:void(0)" (click)="truyenLoaiToModalEmit()" data-toggle="modal" data-target="#addMethodModal" class="list-group-item">
+                <span>
+                    <i class="fa fa-plus"></i> Thêm {{loai}}</span>
+            </a>
+        </div>
+        <div class="header-fields">
+            <a [ngClass]="{'active': loai==='phương pháp'}" (click)="[choose('phương pháp'), truyenLoaiToHeaderEmit()]" href="javascript:void(0)"
+                class="list-group-item">
+                <span>&nbsp; Phương pháp</span>
+            </a>
+            <a [ngClass]="{'active': loai==='công thức'}" (click)="[choose('công thức'), truyenLoaiToHeaderEmit()]" href="javascript:void(0)"
+                class="list-group-item">
+                <span>&nbsp; Công thức</span>
+            </a>
+        </div>
+
+        <nav aria-label="Page navigation example" style="position: absolute; bottom: 0">
+            <ul class="pagination pagination-sm" >
+                <li class="page-item">
+                    <a class="page-link" href="javascript:void(0)" (click)="previous()"><</a>
+                </li>
+                <li *ngFor="let i of numbers" class="page-item" [ngClass]="{'active': i==selectedPagination}">
+                    <a class="page-link" id="pagination{{i}}" href="javascript:void(0)" (click)="[choosePagination(i)] ">{{i}}</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="javascript:void(0)" (click)="next()">></a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</nav> 

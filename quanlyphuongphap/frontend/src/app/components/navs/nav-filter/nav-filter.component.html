@@ -1,0 +1,77 @@
+<div *ngIf="baoloi !== 'Báo lỗi'" class="row">
+    <div class="col-md-3 mb-2">
+        <div class="input-group input-group-sm">
+            <div class="input-group-prepend">
+                <span [ngStyle]="{
+                'background-color': loai==='phương pháp' ? color1_bg : color2_bg,
+                'color': loai==='phương pháp' ? color1_color : color2_color,
+                'border-color': loai==='phương pháp' ? color1_border : color2_border
+              }" class="input-group-text" id="inputGroup-sizing">Môn:</span>
+            </div>
+            <select (change)="chonMon($event)" class="form-control" id="mon">
+                <option *ngFor="let mon of mons" value="{{mon}}">{{mon}}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-2">
+        <div class="input-group input-group-sm">
+            <div class="input-group-prepend">
+                <button class="btn" [ngClass]="{
+                'btn-outline-primary': loai==='phương pháp', 
+                'btn-outline-warning': loai!=='phương pháp'
+              }" type="button" (click)="changeLopChuyende()">{{ LopChuyende }}
+                    <i class="fa fa-refresh"></i>
+                </button>
+            </div>
+            <select [hidden]="checkLopChuyende" (change)="chonLop($event)" class="form-control" id="lop">
+                <option *ngFor="let lop of lops" value="{{ lop }}">{{ lop }}</option>
+            </select>
+        </div>
+    </div>
+
+    <div [hidden]="checkLopChuyende" class="col-md-3 mb-2">
+        <div class="input-group input-group-sm">
+            <div class="input-group-prepend">
+                <!-- <span  [ngStyle]="{
+                'background-color': loai==='phương pháp' ? color1_bg : color2_bg,
+                'color': loai==='phương pháp' ? color1_color : color2_color,
+                'border-color': loai==='phương pháp' ? color1_border : color2_border
+              }" class="input-group-text" id="inputGroup-sizing-sm">Chương:</span> -->
+                <button class="btn pointer" [ngClass]="{
+                'btn-primary': loai==='phương pháp', 
+                'btn-warning': loai!=='phương pháp'
+              }" type="button" (click)="toggleChuong()">Chương:
+                </button>
+            </div>
+            <select class="form-control" (change)="chonChuong($event)" id="chuong">
+                <option *ngFor="let chuong of chuongs"  value="{{chuong}}">{{ chuong }}</option>
+            </select>
+        </div>
+    </div>
+    <div [hidden]="checkLopChuyende" class="col-md-2 mb-2">
+        <div class="input-group input-group-sm">
+            <div class="input-group-prepend">
+                <!-- <span   [ngStyle]="{
+                'background-color': loai==='phương pháp' ? color1_bg : color2_bg,
+                'color': loai==='phương pháp' ? color1_color : color2_color,
+                'border-color': loai==='phương pháp' ? color1_border : color2_border
+              }" class="input-group-text" id="inputGroup-sizing-sm">Bài:</span> -->
+                <button class="btn pointer" [ngClass]="{
+                'btn-primary': loai==='phương pháp', 
+                'btn-warning': loai!=='phương pháp'
+              }" type="button" (click)="toggleBai()">Bài:
+                </button>
+            </div>
+            <select (change)="chonBai($event)" class="form-control" id="bai">
+                <option *ngFor="let bai of bais" value="{{bai}}">{{bai}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-1 mb-2">
+        <button class="btn btn-sm" [ngClass]="{
+        'btn-primary': loai==='phương pháp',
+        'btn-warning': loai!=='phương pháp'
+        }" (click)="queryMethod()">Enter</button>
+    </div>
+</div>
