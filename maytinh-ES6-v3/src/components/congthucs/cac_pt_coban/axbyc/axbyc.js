@@ -78,6 +78,7 @@ export default class PhuongTrinhAxByC {
       const ucln_ba = Service.ucln(b, a);
       const ucln_ca = Service.ucln(c, a);
       s = `
+      <p class='nghiem-axbyc'><b class='color-red'>Đề bài:</b> (${this.a})x + (${this.b})y = (${this.c})</p>
       <p class='nghiem-axbyc'>* Phương trình có dạng: <strong>ax + by = c <span class='color-red'>(1)</span></strong></p>
       <p class='nghiem-axbyc'>* Vì a = ${a} ${khac} 0 nên <span class='color-red'><strong>(1)</strong></span> có vô số nghiệm thoả:</p>
       <p class='nghiem-axbyc'>
@@ -88,6 +89,7 @@ export default class PhuongTrinhAxByC {
     } else if (this.loai === 2) {
       const ucln_cb = Service.ucln(c, b);
       s = `
+      <p class='nghiem-axbyc'><b class='color-red'>Đề bài:</b> (${this.a})x + (${this.b})y = (${this.c})</p>
       <p class='nghiem-axbyc'>* Phương trình có dạng: <strong>ax + by = c <span class='color-red'>(1)</span></strong></p>
       <p class='nghiem-axbyc'>* Vì a = 0 và b = ${b} # 0 nên <span class='color-red'><strong>(1)</strong></span> có vô số nghiệm thoả:</p>
       <p class='nghiem-axbyc'>
@@ -98,6 +100,7 @@ export default class PhuongTrinhAxByC {
     } else if (this.loai === 3) {
       const ucln_ca = Service.ucln(c, a);
       s = `
+      <p class='nghiem-axbyc'><b class='color-red'>Đề bài:</b> (${this.a})x + (${this.b})y = (${this.c})</p>
       <p class='nghiem-axbyc'>* Phương trình có dạng: <strong>ax + by = c <span class='color-red'>(1)</span></strong></p>
       <p class='nghiem-axbyc'>* Vì a = ${a} ${khac} 0 nên <span class='color-red'><strong>(1)</strong></span> có vô số nghiệm thoả:</p>
       <p class='nghiem-axbyc'>

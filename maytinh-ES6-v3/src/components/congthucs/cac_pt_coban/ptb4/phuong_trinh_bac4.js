@@ -89,6 +89,7 @@ export default class PhuongTrinhBac4 {
     if(this.loai === 1) { //this.delta < 0 || (this.delta == 0 && this.b2a < 0
       if(this.delta < 0) {
         s = `
+        <p class='nghiem-bac4'><b style='color: red'>Đề bài:</b> (${this.a})x<sup>4</sup> + (${this.b})x<sup>2</sup> + (${this.c}) = 0</p>
         <p class='nghiem-bac4'>* Phương trình có dạng: <strong>ax<sup>4</sup> + bx<sup>2</sup> + c = 0 <span class='color-red'>(1)</span></strong>, </p>
         <p class='nghiem-bac4'>nên đặt: <strong>t = x<sup>2</sup> (t ≥ 0)</strong> ta được phương trình mới: </p>
         <p class='nghiem-bac4'><strong>at<sup>2</sup> + bt + c = 0 <span class='color-red'>(2)</span></strong> <=> ${this.a}t<sup>2</sup> + ${this.b}t + ${this.c} = 0</p>
@@ -96,6 +97,7 @@ export default class PhuongTrinhBac4 {
         <p class='nghiem-bac4'><strong>* Vì ${delta_} < 0 => <span class='color-red'>(2)</span> vô nghiệm => <span class='color-red'>(1)</span> vô nghiệm</strong></p>`;
       } else if (this.delta === 0 && this.b2a < 0) {
         s = `
+        <p class='nghiem-bac4'><b style='color: red'>Đề bài:</b> (${this.a})x<sup>4</sup> + (${this.b})x<sup>2</sup> + (${this.c}) = 0</p>
         <p class='nghiem-bac4'>* Phương trình có dạng: <strong>ax<sup>4</sup> + bx<sup>2</sup> + c = 0 <span class='color-red'>(1)</span></strong>, </p>
         <p class='nghiem-bac4'>nên đặt: <strong>t = x<sup>2</sup> (t ≥ 0)</strong> ta được phương trình mới: </p>
         <p class='nghiem-bac4'><strong>at<sup>2</sup> + bt + c = 0 <span class='color-red'>(2)</span></strong> <=> ${this.a}t<sup>2</sup> + ${this.b}t + ${this.c} = 0</p>
@@ -105,6 +107,7 @@ export default class PhuongTrinhBac4 {
         <p class='nghiem-bac4'>* Vì <span id='bac4__TH2_b2a_2'>\\(\\frac{{ - b}}{{2a}} < 0 \\Rightarrow\\)</span> <span class='color-red'>(1)</span> vô nghiệm</p>`
       } else if (this.delta > 0 && this.S < 0 && this.P > 0) {
         s = `
+        <p class='nghiem-bac4'><b style='color: red'>Đề bài:</b> (${this.a})x<sup>4</sup> + (${this.b})x<sup>2</sup> + (${this.c}) = 0</p>
         <p class='nghiem-bac4'>* Phương trình có dạng: <strong>ax<sup>4</sup> + bx<sup>2</sup> + c = 0 <span class='color-red'>(1)</span></strong>, </p>
         <p class='nghiem-bac4'>nên đặt: <strong>t = x<sup>2</sup> (t ≥ 0)</strong> ta được phương trình mới: </p>
         <p class='nghiem-bac4'><strong>at<sup>2</sup> + bt + c = 0 <span class='color-red'>(2)</span></strong> <=> ${this.a}t<sup>2</sup> + ${this.b}t + ${this.c} = 0</p>
@@ -114,6 +117,7 @@ export default class PhuongTrinhBac4 {
      
     } else if(this.loai === 2) { //this.delta == 0 && this.b2a >= 0
       s = `
+      <p class='nghiem-bac4'><b style='color: red'>Đề bài:</b> (${this.a})x<sup>4</sup> + (${this.b})x<sup>2</sup> + (${this.c}) = 0</p>
       <p class='nghiem-bac4'>* Phương trình có dạng: <strong>ax<sup>4</sup> + bx<sup>2</sup> + c = 0 <span class='color-red'>(1)</span></strong>, </p>
       <p class='nghiem-bac4'>nên đặt: <strong>t = x<sup>2</sup> (t ≥ 0)</strong> ta được phương trình mới: </p>
       <p class='nghiem-bac4'><strong>at<sup>2</sup> + bt + c = 0 <span class='color-red'>(2)</span></strong> <=> ${this.a}t<sup>2</sup> + ${this.b}t + ${this.c} = 0</p>
@@ -121,46 +125,49 @@ export default class PhuongTrinhBac4 {
       <p class='nghiem-bac4'><strong>* Vì ${delta_} = 0 => <span class='color-red'>(2)</span> có nghiệm kép</span></p>
       <p class='nghiem-bac4'><span id='bac4__TH2_b2a'>\\({t_1} = {t_2} = \\frac{{ - b}}{{2a}} = \\frac{${-this.b}}{${this.a}} = ${this.b2a}\\)</span></p>
       <p class='nghiem-bac4'>* Vì <span id='bac4__TH2_b2a_2'>\\(\\frac{{ - b}}{{2a}} \\ge 0 \\Rightarrow\\)</span> <span class='color-red'>(1)</span> có nghiệm là:</p>
-      <p class='nghiem-bac4'><span id='bac4__TH2_b2a_3'>\\(x =  \\pm \\sqrt {\\frac{{ - b}}{{2a}}}  =  \\pm \\sqrt {\\frac{{${-this.b}}}{{${2*this.a}}}} ${Service.bang(this.x)} \\pm ${this.x}\\)</span></p>
+      <p class='nghiem-bac4'><span id='bac4__TH2_b2a_3'>\\(x =  \\pm \\sqrt {\\frac{{ - b}}{{2a}}}  =  \\pm \\sqrt {\\frac{{${-this.b}}}{{${2*this.a}}}} ${Service.bang(this.x)} ${this.x !== 0 ? '\\pm': ''} ${this.x}\\)</span></p>
       `;
     } else if(this.loai === 3) { // this.delta > 0 && this.X1 >= 0 && this.X2 < 0
       s = `
+      <p class='nghiem-bac4'><b style='color: red'>Đề bài:</b> (${this.a})x<sup>4</sup> + (${this.b})x<sup>2</sup> + (${this.c}) = 0</p>
         <p class='nghiem-bac4'>* Phương trình có dạng: <strong>ax<sup>4</sup> + bx<sup>2</sup> + c = 0 <span class='color-red'>(1)</span></strong>, </p>
         <p class='nghiem-bac4'>nên đặt: <strong>t = x<sup>2</sup> (t ≥ 0)</strong> ta được phương trình mới: </p>
         <p class='nghiem-bac4'><strong>at<sup>2</sup> + bt + c = 0 <span class='color-red'>(2)</span></strong> <=> ${this.a}t<sup>2</sup> + ${this.b}t + ${this.c} = 0</p>
         <p class='nghiem-bac4'>* ${delta_} = b<sup>2</sup> - 4ac =  ${this.b}<sup>2</sup> - 4*${this.a}*${this.c} = ${this.delta}</p>
-        <p class='nghiem-bac4'><strong>* Vì ${delta_} > 0 => <span class='color-red'>(2)</span> có 2 nghiệm phân biệt:</strong></p>
+        <p class='nghiem-bac4'><strong>* Vì ${delta_} > 0 => <span class='color-red'>(2)</span> có 2 nghiệm :</strong></p>
         <p class='nghiem-bac4'>\\({t_1} = \\frac{{ - b - \\sqrt \\Delta  }}{{2a}} = \\frac{{ ${-this.b} - \\sqrt ${this.delta} }}{{${2*this.a}}} ${Service.bang(this.X1)} ${this.X1}\\)</p>
         <p class='nghiem-bac4'>\\({t_2} = \\frac{{ - b + \\sqrt \\Delta  }}{{2a}} = \\frac{{ ${-this.b} + \\sqrt ${this.delta} }}{{${2*this.a}}} ${Service.bang(this.X2)} ${this.X2}\\)</p>
         <p class='nghiem-bac4'>* Vì \\(\\frac{{ - b - \\sqrt \\Delta  }}{{2a}} \\ge 0\\) và \\(\\frac{{ - b - \\sqrt \\Delta  }}{{2a}} < 0 \\Rightarrow\\) <span class='color-red'>(1)</span> có nghiệm:</p>
         <p class='nghiem-bac4'>
-        \\(x =  \\pm \\sqrt {\\frac{{ - b - \\sqrt \\Delta  }}{{2a}}}  =  \\pm \\sqrt {\\frac{{ ${-this.b} - \\sqrt ${this.delta}  }}{{${2*this.a}}}} ${Service.bang(this.x)} \\pm ${this.x}\\)</p>`;
+        \\(x =  \\pm \\sqrt {\\frac{{ - b - \\sqrt \\Delta  }}{{2a}}}  =  \\pm \\sqrt {\\frac{{ ${-this.b} - \\sqrt ${this.delta}  }}{{${2*this.a}}}} ${Service.bang(this.x)} ${this.x !== 0 ? '\\pm': ''} ${this.x}\\)</p>`;
     } else if(this.loai === 4) { // this.delta > 0 && this.X1 < 0 && this.X2 >= 0
       s = `
+      <p class='nghiem-bac4'><b style='color: red'>Đề bài:</b> (${this.a})x<sup>4</sup> + (${this.b})x<sup>2</sup> + (${this.c}) = 0</p>
         <p class='nghiem-bac4'>* Phương trình có dạng: <strong>ax<sup>4</sup> + bx<sup>2</sup> + c = 0 <span class='color-red'>(1)</span></strong>, </p>
         <p class='nghiem-bac4'>nên đặt: <strong>t = x<sup>2</sup> (t ≥ 0)</strong> ta được phương trình mới: </p>
         <p class='nghiem-bac4'><strong>at<sup>2</sup> + bt + c = 0 <span class='color-red'>(2)</span></strong> <=> ${this.a}t<sup>2</sup> + ${this.b}t + ${this.c} = 0</p>
         <p class='nghiem-bac4'>* ${delta_} = b<sup>2</sup> - 4ac =  ${this.b}<sup>2</sup> - 4*${this.a}*${this.c} = ${this.delta}</p>
-        <p class='nghiem-bac4'><strong>* Vì ${delta_} > 0 => <span class='color-red'>(2)</span> có 2 nghiệm phân biệt:</strong></p>
+        <p class='nghiem-bac4'><strong>* Vì ${delta_} > 0 => <span class='color-red'>(2)</span> có 2 nghiệm :</strong></p>
         <p class='nghiem-bac4'>\\({t_1} = \\frac{{ - b - \\sqrt \\Delta  }}{{2a}} = \\frac{{ ${-this.b} - \\sqrt {${this.delta}} }}{{${2*this.a}}} ${Service.bang(this.X1)} ${this.X1}\\)</p>
         <p class='nghiem-bac4'>\\({t_2} = \\frac{{ - b + \\sqrt \\Delta  }}{{2a}} = \\frac{{ ${-this.b} + \\sqrt {${this.delta}} }}{{${2*this.a}}} ${Service.bang(this.X2)} ${this.X2}\\)</p>
         <p class='nghiem-bac4'>* Vì \\(\\frac{{ - b - \\sqrt \\Delta  }}{{2a}} < 0\\) và \\(\\frac{{ - b - \\sqrt \\Delta  }}{{2a}} \\ge 0 \\Rightarrow\\) <span class='color-red'>(1)</span> có nghiệm:</p>
         <p class='nghiem-bac4'>
-        \\(x =  \\pm \\sqrt {\\frac{{ - b + \\sqrt \\Delta  }}{{2a}}}  =  \\pm \\sqrt {\\frac{{ ${-this.b} + \\sqrt {${this.delta}}  }}{{${2*this.a}}}} ${Service.bang(this.x)} \\pm ${this.x}\\)</p>`;
+        \\(x =  \\pm \\sqrt {\\frac{{ - b + \\sqrt \\Delta  }}{{2a}}}  =  \\pm \\sqrt {\\frac{{ ${-this.b} + \\sqrt {${this.delta}}  }}{{${2*this.a}}}} ${Service.bang(this.x)} ${this.x !== 0 ? '\\pm': ''} ${this.x}\\)</p>`;
     } else if (this.loai === 5) { // this.delta > 0 && this.X1 >= 0 && this.X2 >= 0
       s = `
+      <p class='nghiem-bac4'><b style='color: red'>Đề bài:</b> (${this.a})x<sup>4</sup> + (${this.b})x<sup>2</sup> + (${this.c}) = 0</p>
       <p class='nghiem-bac4'>* Phương trình có dạng: <strong>ax<sup>4</sup> + bx<sup>2</sup> + c = 0 <span class='color-red'>(1)</span></strong>, </p>
       <p class='nghiem-bac4'>nên đặt: <strong>t = x<sup>2</sup> (t ≥ 0)</strong> ta được phương trình mới: </p>
       <p class='nghiem-bac4'><strong>at<sup>2</sup> + bt + c = 0 <span class='color-red'>(2)</span></strong> <=> ${this.a}t<sup>2</sup> + ${this.b}t + ${this.c} = 0</p>
       <p class='nghiem-bac4'>* ${delta_} = b<sup>2</sup> - 4ac =  ${this.b}<sup>2</sup> - 4*${this.a}*${this.c} = ${this.delta}</p>
-      <p class='nghiem-bac4'><strong>* Vì ${delta_} > 0 => <span class='color-red'>(2)</span> có 2 nghiệm phân biệt:</strong></p>
+      <p class='nghiem-bac4'><strong>* Vì ${delta_} > 0 => <span class='color-red'>(2)</span> có 2 nghiệm :</strong></p>
       <p class='nghiem-bac4'>\\({t_1} = \\frac{{ - b - \\sqrt \\Delta  }}{{2a}} = \\frac{{ ${-this.b} - \\sqrt ${this.delta} }}{{${2*this.a}}} ${Service.bang(this.X1)} ${this.X1}\\)</p>
       <p class='nghiem-bac4'>\\({t_2} = \\frac{{ - b + \\sqrt \\Delta  }}{{2a}} = \\frac{{ ${-this.b} + \\sqrt ${this.delta} }}{{${2*this.a}}} ${Service.bang(this.X2)} ${this.X2}\\)</p>
       <p class='nghiem-bac4'>* Vì \\(\\frac{{ - b - \\sqrt \\Delta  }}{{2a}} \\ge 0\\) và \\(\\frac{{ - b - \\sqrt \\Delta  }}{{2a}} \\ge 0 \\Rightarrow\\) <span class='color-red'>(1)</span> có nghiệm:</p>
       <p class='nghiem-bac4'>
-      \\(x1 =  \\pm \\sqrt {\\frac{{ - b - \\sqrt \\Delta  }}{{2a}}}  =  \\pm \\sqrt {\\frac{{ ${-this.b} - \\sqrt {${this.delta}}  }}{{${2*this.a}}}} ${Service.bang(this.x1)} \\pm ${Service.round(this.x1, 7)}\\)</p>
+      \\(x1 =  \\pm \\sqrt {\\frac{{ - b - \\sqrt \\Delta  }}{{2a}}}  =  \\pm \\sqrt {\\frac{{ ${-this.b} - \\sqrt {${this.delta}}  }}{{${2*this.a}}}} ${Service.bang(this.x1)} ${this.x !== 0 ? '\\pm': ''} ${Service.round(this.x1, 7)}\\)</p>
       <p class='nghiem-bac4'>
-        \\(x2 =  \\pm \\sqrt {\\frac{{ - b + \\sqrt \\Delta  }}{{2a}}}  =  \\pm \\sqrt {\\frac{{ ${-this.b} + \\sqrt {${this.delta}}  }}{{${2*this.a}}}} ${Service.bang(this.x2)} \\pm ${Service.round(this.x2, 7)}\\)</p>`;
+        \\(x2 =  \\pm \\sqrt {\\frac{{ - b + \\sqrt \\Delta  }}{{2a}}}  =  \\pm \\sqrt {\\frac{{ ${-this.b} + \\sqrt {${this.delta}}  }}{{${2*this.a}}}} ${Service.bang(this.x2)} ${this.x !== 0 ? '\\pm': ''} ${Service.round(this.x2, 7)}\\)</p>`;
     }
 
     result.innerHTML = s;
@@ -242,7 +249,7 @@ export default class PhuongTrinhBac4 {
       s = `<hr>
           <p class='nghiem-bac4'><b class='color-red'>Đề bài:</b> (${this.a})x<sup>4</sup> + (${this.b})x<sup>2</sup> + (${this.c}) = 0</p>
           <p class='nghiem-bac4'><b class='color-red'>Kết quả:</b> ${kq}</p>
-          <p class='nghiem-bac4'>x ${Service.bang(this.x)} ±${this.x}</p>
+          <p class='nghiem-bac4'>x ${Service.bang(this.x)} ${this.x !== 0 ? '±': '' }${this.x}</p>
           `;
     } else if (this.loai == 3) {
       let _x = `sqrt((-${this.b}-sqrt(${this.delta}))/(2*${this.a}))`;
@@ -252,7 +259,7 @@ export default class PhuongTrinhBac4 {
       s = `<hr>
           <p class='nghiem-bac4'><b class='color-red'>Đề bài:</b> (${this.a})x<sup>4</sup> + (${this.b})x<sup>2</sup> + (${this.c}) = 0</p>
           <p class='nghiem-bac4'><b class='color-red'>Kết quả:</b> ${kq}</p>
-          <p class='nghiem-bac4'>x ${Service.bang(this.x)} ±${this.x}</p>`;
+          <p class='nghiem-bac4'>x ${Service.bang(this.x)} ${this.x !== 0 ? '±': '' }${this.x}</p>`;
     } else if (this.loai == 4) {
       console.log('b: ' + this.b)
       console.log('delta: ' + this.delta)
@@ -266,7 +273,7 @@ export default class PhuongTrinhBac4 {
       s = `<hr>
           <p class='nghiem-bac4'><b class='color-red'>Đề bài:</b> (${this.a})x<sup>4</sup> + (${this.b})x<sup>2</sup> + (${this.c}) = 0</p>
           <p class='nghiem-bac4'><b class='color-red'>Kết quả:</b> ${kq}</p>
-          <p class='nghiem-bac4'>x ${Service.bang(this.x)} ±${this.x}</p>`;
+          <p class='nghiem-bac4'>x ${Service.bang(this.x)} ${this.x !== 0 ? '±': '' }${this.x}</p>`;
     } else if (this.loai == 5) {
       let _x1 = `sqrt((-${this.b}-sqrt(${this.delta}))/(2*${this.a}))`;
       let _x2 = `sqrt((-${this.b}+sqrt(${this.delta}))/(2*${this.a}))`;

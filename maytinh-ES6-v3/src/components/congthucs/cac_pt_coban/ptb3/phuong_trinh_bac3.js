@@ -127,6 +127,7 @@ export default class PhuongTrinhBac3 {
     let s = ``;
     if (loai == 1) {
       s = `
+        <p class='nghiem-bac3'><b style='color: red'>Đề bài:</b> (${a})x<sup>3</sup> + (${b})x<sup>2</sup> + (${c})x + (${d}) = 0</p>
         <p class='nghiem-bac3'>* Phương trình có dạng: ax<sup>3</sup> + bx<sup>2</sup> + cx + d = 0 (a ≠ 0)</p>
         <p class='nghiem-bac3'>* Với a = ${a} ≠ 0</p>
         <p class='nghiem-bac3'>* ${delta_} = b<sup>2</sup> - 3ac = (${b})<sup>2</sup> - 3*(${a})*(${c}) ${Service.bang(delta)} <span class='color-red'>${Service.round(delta, 7)}</span></p>
@@ -139,6 +140,7 @@ export default class PhuongTrinhBac3 {
         `;
     } else if (loai == 2) {
       s = `
+      <p class='nghiem-bac3'><b style='color: red'>Đề bài:</b> (${a})x<sup>3</sup> + (${b})x<sup>2</sup> + (${c})x + (${d}) = 0</p>
       <p class='nghiem-bac3'>* Phương trình có dạng: ax<sup>3</sup> + bx<sup>2</sup> + cx + d = 0 (a ≠ 0)</p>
       <p class='nghiem-bac3'>* Với a = ${a} ≠ 0</p>
       <p class='nghiem-bac3'>* ${delta_} = b<sup>2</sup> - 3ac = (${b})<sup>2</sup> - 3*(${a})*(${c}) ${Service.bang(delta)} <span class='color-red'>${Service.round(delta, 7)}</span></p>
@@ -150,6 +152,7 @@ export default class PhuongTrinhBac3 {
       `;
     } else if (loai == 3) {
       s = `
+      <p class='nghiem-bac3'><b style='color: red'>Đề bài:</b> (${a})x<sup>3</sup> + (${b})x<sup>2</sup> + (${c})x + (${d}) = 0</p>
       <p class='nghiem-bac3'>* Phương trình có dạng: ax<sup>3</sup> + bx<sup>2</sup> + cx + d = 0 (a ≠ 0)</p>
       <p class='nghiem-bac3'>* Với a = ${a} ≠ 0</p>
       <p class='nghiem-bac3'>* ${delta_} = b<sup>2</sup> - 3ac = (${b})<sup>2</sup> - 3*(${a})*(${c}) ${Service.bang(delta)} <span class='color-red'>${Service.round(delta, 7)}</span></p>
@@ -159,9 +162,11 @@ export default class PhuongTrinhBac3 {
       `;
     } else if (loai === 4) {
       s = `
+      <p class='nghiem-bac3'><b style='color: red'>Đề bài:</b> (${a})x<sup>3</sup> + (${b})x<sup>2</sup> + (${c})x + (${d}) = 0</p>
       <p class='nghiem-bac3'>* Phương trình có dạng: ax<sup>3</sup> + bx<sup>2</sup> + cx + d = 0 (a ≠ 0)</p>
       <p class='nghiem-bac3'>* Với a = ${a} ≠ 0</p>
       <p class='nghiem-bac3'>* ${delta_} = b<sup>2</sup> - 3ac = (${b})<sup>2</sup> - 3*(${a})*(${c}) ${Service.bang(delta)} <span class='color-red'>${Service.round(delta, 7)}</span></p>
+      <p class='nghiem-bac3'>* k = ${this.bac3__k.outerHTML} ${Service.bang(k)} <span class='color-red'>${Service.round(k, 7)}</span></p>
       <p class='nghiem-bac3'>* Vì ${delta_} < 0 ${suyra} Phương trình có 1 nghiệm thực là:</p>
       <p class='nghiem-bac3'>${this.bac3__TH4__x.outerHTML}</p>
       <p class='nghiem-bac3'><=> <span class='color-red'>x ${Service.bang(this.x)} ${this.x}</span></p>

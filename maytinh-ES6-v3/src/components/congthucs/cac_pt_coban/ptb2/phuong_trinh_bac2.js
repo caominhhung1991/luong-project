@@ -133,6 +133,7 @@ export default class PhuongTrinhBac2 {
             amduong = -1;
         }
         return `
+        <p><b style='color: red'>Đề bài:</b> (${a})x<sup>2</sup> + (${b})x + (${c}) = 0</p>
         <p>* Với a = ${a} ${khac} 0</p>
         <p>* &#8710; = b<sup>2</sup> - 4ac = (${b})<sup>2</sup> - 4*(${a})*(${c}) = ${Service.round(delta, 4)}</p>
         <p>* &#8710; < 0 &rArr; Phương trình vô nghiệm trên R, nhưng có 2 nghiệm phức là:</p>
@@ -293,6 +294,7 @@ export default class PhuongTrinhBac2 {
 
     nghiemKepKhongRutGon(a, b, c, delta, x) {
         return `
+        <p><b style='color: red'>Đề bài:</b> (${a})x<sup>2</sup> + (${b})x + (${c}) = 0</p>
         <p>* Với a = ${a} ${khac} 0</p>
         <p>* &#8710; = b<sup>2</sup> - 4ac = (${b})<sup>2</sup> - 4*(${a})*(${c}) = ${delta}</p>
         <p>* &#8710; = 0 &rArr; phương trình có nghiệm kép</p>
@@ -302,12 +304,13 @@ export default class PhuongTrinhBac2 {
                 <span class="hainghiemkep"><span class="tu">-b</span><span class="mau">2a</span></span> = 
                 <span class="hainghiemkep"><span class="tu">${-b}</span><span class="mau">${2 * a}</span></span> = 
                 ${x}
-            </p>
+            </p>å
         </div>`;
     }
 
     nghiemKepRutGon(a, b, c, delta, ucln, x) {
         return `
+        <p><b style='color: red'>Đề bài:</b> (${a})x<sup>2</sup> + (${b})x + (${c}) = 0</p>
         <p>* Với a = ${a} ${khac} 0</p>
         <p>* &#8710; = b<sup>2</sup> - 4ac = (${b})<sup>2</sup> - 4*(${a})*(${c}) = ${delta}</p>
         <p>* &#8710; = 0 &rArr; phương trình có nghiệm kép</p>
@@ -324,6 +327,7 @@ export default class PhuongTrinhBac2 {
 
     haiNghiemCoDeltaInteger(a, b, c, delta, uclnX1, uclnX2, x1, x2) {
         return `
+        <p><b style='color: red'>Đề bài:</b> (${a})x<sup>2</sup> + (${b})x + (${c}) = 0</p>
         <p>* Với a = ${a} ${khac} 0</p>
         <p>* &#8710; = b<sup>2</sup> - 4ac = (${b})<sup>2</sup> - 4*(${a})*(${c}) = ${delta}</p>
         <p>* &#8710; > 0 &rArr; Phương trình có 2 nghiệm phân biệt</p>
@@ -369,6 +373,7 @@ export default class PhuongTrinhBac2 {
 
     haiNghiemCoDeltaDouble(a, b, c, delta, x1, x2) {
         return `
+        <p><b style='color: red'>Đề bài:</b> (${a})x<sup>2</sup> + (${b})x + (${c}) = 0</p>
         <p>* Với a = ${a} ${khac} 0</p>
         <p>* &#8710; = b<sup>2</sup> - 4ac = (${b})<sup>2</sup> - 4*(${a})*(${c}) = ${Service.round(delta, 4)}</p>
         <p>* &#8710; > 0 &rArr; Phương trình có 2 nghiệm phân biệt</p>
