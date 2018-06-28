@@ -63,8 +63,8 @@ export default class PhuongTrinhBac1 {
       s = `<hr>
       <p class='nghiem-bac1'><b class='color-red'>Đề bài:</b> <strong>(${this.a})x + (${this.b}) = 0</strong></p>
       <p class='nghiem-bac1'>* Phương trình có dạng: <strong>ax + b = 0</strong></p>
-      <p class='nghiem-bac1'>* Vì a = 0 và b = 0 => Phương trình vô số nghiệm</p>
-      <p class='nghiem-bac1'><strong class='color-red'>Kết quả:</strong> <strong>Phương trình vô số nghiệm &forall;x &isin; R</strong></p>
+      <p class='nghiem-bac1'>* Vì a = 0 và b = 0 => Phương trình có vô số nghiệm (&forall;x &isin; R)</p>
+      <p class='nghiem-bac1'><strong class='color-red'>Kết quả:</strong> <strong>Phương trình có vô số nghiệm (&forall;x &isin; R)</strong></p>
     `;
     }
 

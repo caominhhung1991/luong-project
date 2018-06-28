@@ -131,10 +131,10 @@ export default class PhuongTrinhBac3 {
         <p class='nghiem-bac3'>* Với a = ${a} ≠ 0</p>
         <p class='nghiem-bac3'>* ${delta_} = b<sup>2</sup> - 3ac = (${b})<sup>2</sup> - 3*(${a})*(${c}) ${Service.bang(delta)} <span class='color-red'>${Service.round(delta, 7)}</span></p>
         <p class='nghiem-bac3'>* k = ${this.bac3__k.outerHTML} ${Service.bang(k)} <span class='color-red'>${Service.round(k, 7)}</span></p>
-        <p class='nghiem-bac3'>* Vì ${delta_} > 0 và |k| ${behonbang} 1 ${suyra} Phương trình có 3 nghiệm phân biệt là:</p>
-        <p class='nghiem-bac3'>* <span class='color-red'>x1 = ${this.bac3__TH1__x1.outerHTML} ${Service.bang(this.x1)} ${this.x1}</span></p>
-        <p class='nghiem-bac3'>* <span class='color-red'>x2 = ${this.bac3__TH1__x2.outerHTML} ${Service.bang(this.x2)} ${this.x2}</span></p>
-        <p class='nghiem-bac3'>* <span class='color-red'>x3 = ${this.bac3__TH1__x3.outerHTML} ${Service.bang(this.x3)} ${this.x3}</span></p>
+        <p class='nghiem-bac3'>* Vì ${delta_} > 0 và |k| ${behonbang} 1 ${suyra} Phương trình có 3 nghiệm là:</p>
+        <p class='nghiem-bac3'>* <span class='color-red'>x<sub>1</sub> = ${this.bac3__TH1__x1.outerHTML} ${Service.bang(this.x1)} ${this.x1}</span></p>
+        <p class='nghiem-bac3'>* <span class='color-red'>x<sub>2</sub> = ${this.bac3__TH1__x2.outerHTML} ${Service.bang(this.x2)} ${this.x2}</span></p>
+        <p class='nghiem-bac3'>* <span class='color-red'>x<sub>3</sub> = ${this.bac3__TH1__x3.outerHTML} ${Service.bang(this.x3)} ${this.x3}</span></p>
         <p class='nghiem-bac3'>* <span class='color-red'>Chú ý:</span> Công thức tính ∆ trong phương trình bậc 3 khác trong phương trình bậc 2</p>
         `;
     } else if (loai == 2) {
@@ -177,7 +177,7 @@ export default class PhuongTrinhBac3 {
     let s = '';
     let kq = '';
     if (loai == 1) {
-      kq = 'Phương trình có 3 nghiệm phân biệt là:';
+      kq = 'Phương trình có 3 nghiệm là:';
       let _x1 = `(2*sqrt(${delta})*cos(acos(${k})/3)-${b})/(3*${a})`;
       let _x2 = `(2*sqrt(${delta})*cos(acos(${k})/3 - (2*pi/3))-${b})/(3*${a})`;
       let _x3 = `(2*sqrt(${delta})*cos(acos(${k})/3 + (2*pi/3))-${b})/(3*${a})`;

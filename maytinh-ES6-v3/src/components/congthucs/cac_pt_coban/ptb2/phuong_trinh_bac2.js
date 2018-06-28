@@ -220,7 +220,7 @@ export default class PhuongTrinhBac2 {
     
                 <div class="thapphan" style="padding-bottom:5px">
                     <p>
-                        x<sub>1</sub> = 
+                        x<sub>2</sub> = 
                         <span class="co2nghiem mr-10">
                             <span class="tu">${((-b) / uclnX1) * amduong}</span>
                             <span class="mau">${((Service.round(math.eval(`2*${a}`), 3)) / uclnX1) * amduong}</span>
@@ -253,16 +253,16 @@ export default class PhuongTrinhBac2 {
                     `<hr>
                 <p><b>Đề bài:</b> (${a})x<sup>2</sup> + (${b})x + (${c}) = 0</p>
                 <p><b>Kết quả:</b> ${kq}</p>
-                <p>x1 = ${x1}</p>
-                <p>x2 = ${x2}</p>
+                <p>x<sub>1</sub> = ${x1}</p>
+                <p>x<sub>2</sub> = ${x2}</p>
                 `;
             } else {
                 result =
                     `<hr>
                 <p><b>Đề bài:</b> (${a})x<sup>2</sup> + (${b})x + (${c}) = 0</p>
                 <p><b>Kết quả:</b> ${kq}</p>
-                <p>x1 ${ganbang} ${x1}</p>
-                <p>x2 ${ganbang} ${x2}</p>
+                <p>x<sub>1</sub> ${ganbang} ${x1}</p>
+                <p>x<sub>2</sub> ${ganbang} ${x2}</p>
                 `;
             }
 

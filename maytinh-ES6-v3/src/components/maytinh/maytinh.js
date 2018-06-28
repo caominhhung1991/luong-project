@@ -138,10 +138,6 @@ class MayTinh {
 		vedothi.onclick = () => { window.open('https://www.desmos.com/calculator'); }
 		vedothi.ontouchend = () => { window.open('https://www.desmos.com/calculator'); }
 
-		let ghichu = clone.querySelector('#ghichu');
-		ghichu.onclick = () => { window.open('http://localhost:3002'); }
-		ghichu.ontouchend = () => { window.open('http://localhost:3002'); }
-
 		return clone;
 	}
 
