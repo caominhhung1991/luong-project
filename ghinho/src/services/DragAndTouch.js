@@ -7,7 +7,7 @@ export default class DragAndTouch {
     this.widget = widget;
     localStorage.setItem('GHIM_GHINHO_TOGGLE', 'true');
     let header = element.id + 'header';
-    this.widgetCordinatesHandler();
+    this.widgetCordinatesHandle();
     if (document.getElementById(header)) {
       document.getElementById(header).onmousedown = (event) => { this.dragMouseDown(event, element) };
     } else {
@@ -15,7 +15,7 @@ export default class DragAndTouch {
     }
   }
 
-  widgetCordinatesHandler = () => {
+  widgetCordinatesHandle = () => {
     let e_left = this.element.offsetLeft;
     let e_top = this.element.offsetTop;
     let e_width = this.element.offsetWidth;
@@ -45,7 +45,7 @@ export default class DragAndTouch {
 
     element.style.top = (element.offsetTop - this.pos2) + 'px';
     element.style.left = (element.offsetLeft - this.pos1) + 'px';
-    this.widgetCordinatesHandler();
+    this.widgetCordinatesHandle();
   }
 
   dragMouseDown = (e, element) => {
@@ -96,6 +96,6 @@ export default class DragAndTouch {
     } else if (left + element.offsetWidth + this.MARGIN > window.innerWidth) {
       element.style.left = (window.innerWidth - element.offsetWidth - this.MARGIN) + 'px';
     }
-    this.widgetCordinatesHandler();
+    this.widgetCordinatesHandle();
   }
 }

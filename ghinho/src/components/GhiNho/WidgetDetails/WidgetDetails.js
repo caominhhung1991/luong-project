@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import './WidgetDetails.scss';
 import Aux from '../../../hoc/_Aux/_Aux';
-
+import axios from 'axios';
 export default class WidgetDetails extends Component {
 
   render() {
+    // axios.get('./../upload/hinh/p')
     console.log(this.props)
     return (
       <Aux>
@@ -21,7 +22,7 @@ export default class WidgetDetails extends Component {
                 <h4 className="widget-lythuyet__text">Lý thuyết:</h4>
                 <div id="ghichu-lythuyet-images">
                   <div>
-                    <img className="widget-lythuyet__image" src="https://cdn.pixabay.com/photo/2015/04/19/08/32/marguerite-729510_1280.jpg" alt="congthuc"/>
+                    <img className="widget-lythuyet__image" src="./../test.png" alt="congthuc"/>
                   </div>
                 </div>
               </div>

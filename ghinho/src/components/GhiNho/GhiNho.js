@@ -29,11 +29,7 @@ class GhiNho extends Component {
     localStorage.setItem('showWidget', 'false')
   }
 
-  componentDidUpdate() {
-    
-  }
-
-  ghimHandler = () => {
+  ghimHandle = () => {
     if (this.state.ghim === false) {
       this.dragAndTouch.checkWidthHeight(this.ghinho);
       this.dragAndTouch.endDragGhim(this.ghinho);
@@ -45,8 +41,10 @@ class GhiNho extends Component {
     })
   }
 
-  dataHandler = (url) => {
+  dataHandle = (url) => {
     // console.log('/api/congthuc/Toán/Lớp/Lớp 10/Chương 1/Bài 1')
+    console.log(url)
+    // return 0;
     instanceAxios.get(url)
       .then(res => {
         console.log(res.data)
@@ -55,7 +53,7 @@ class GhiNho extends Component {
           haveData: true,
           datas: res.data.data
         })
-      }, err => { console.log(err)})
+      }, err => { console.log(err) })
       .catch(err => {
         console.log(err)
         this.setState({
@@ -64,11 +62,9 @@ class GhiNho extends Component {
           datas: null
         })
       })
-
-
   }
 
-  showDataHandler = (event) => {
+  showDataHandle = (event) => {
     alert(event.target.innerHTML)
     this.setState({
       ...this.state,
@@ -89,7 +85,7 @@ class GhiNho extends Component {
       })
     } else {
       this.checkWidthHeight_GhiNho(this.ghinho, 400, 45);
-      if(localStorage.getItem('showWidget') === 'true') {
+      if (localStorage.getItem('showWidget') === 'true') {
         this.setState({
           ...this.state,
           showGhiNho: !this.state.showGhiNho,
@@ -103,9 +99,9 @@ class GhiNho extends Component {
       }
     }
     setTimeout(() => {
-      this.dragAndTouch.widgetCordinatesHandler();
+      this.dragAndTouch.widgetCordinatesHandle();
     }, 400)
-    
+
   }
 
   checkWidthHeight_GhiNho = (element, width, height) => {
@@ -122,7 +118,7 @@ class GhiNho extends Component {
     }
   }
 
-  switchCongThucHandler = (congthuc) => {
+  switchCongThucHandle = (congthuc) => {
     let check = congthuc === 'Công thức'
     this.setState({
       ...this.state,
@@ -131,8 +127,8 @@ class GhiNho extends Component {
   }
 
   // data have selected by user - set state selectedData;
-  selectedDataHandler = (data) => {
-    localStorage.setItem('showWidget','true');
+  selectedDataHandle = (data) => {
+    localStorage.setItem('showWidget', 'true');
     this.setState({
       ...this.state,
       selectedData: data,
@@ -140,27 +136,29 @@ class GhiNho extends Component {
     })
   }
 
-  closeWidgetDetailsHandler = () => {
-    localStorage.setItem('showWidget','false');
+  closeWidgetDetailsHandle = () => {
+    localStorage.setItem('showWidget', 'false');
     this.setState({
       ...this.state,
       showWidgetDetails: false
     })
   }
 
+
+
   render() {
     let ghiNhoContentStyle = this.state.congthuc ? 'light-yellow' : 'light-green';
     let paginationItemStyle = this.state.congthuc ? 'bg-warning text-dark' : 'bg-success text-white';
     let ghim = (
       <div className="tooltip_">
-        <i id="ghim-ghinho" className="fa fa-thumb-tack ghimChecked" onClick={this.ghimHandler}></i>
+        <i id="ghim-ghinho" className="fa fa-thumb-tack ghimChecked" onClick={this.ghimHandle}></i>
         <span className="tooltiptext">Bỏ ghim</span>
       </div>
     );
 
     if (this.state.ghim === false) {
       ghim = <div className="tooltip_">
-        <i id="ghim-ghinho" className="fa fa-thumb-tack" onClick={this.ghimHandler}></i>
+        <i id="ghim-ghinho" className="fa fa-thumb-tack" onClick={this.ghimHandle}></i>
         <span className="tooltiptext">Ghim</span>
       </div>
     }
@@ -179,35 +177,39 @@ class GhiNho extends Component {
           </div>
           {this.state.showGhiNho ?
             <div id="ghinho__content" className={["ghinho__content"].join(' ')}>
-              <GhiNhoContent dataHandler={this.dataHandler} switchedCongThuc={this.switchCongThucHandler} />
+              <GhiNhoContent 
+                dataHandle={this.dataHandle} 
+                switchedCongThuc={this.switchCongThucHandle} 
+              />
+
               {
                 this.state.haveData === true ?
-                  <Datas 
-                    datas={this.state.datas} 
-                    clicked={this.showDataHandler} 
-                    selectedData={this.selectedDataHandler} 
+                  <Datas
+                    datas={this.state.datas}
+                    clicked={this.showDataHandle}
+                    selectedData={this.selectedDataHandle}
 
                   />
                   : <div style={{ width: '95%', margin: 'auto' }}>Chưa có data</div>
               }
 
-              <nav style={{width: '95%', margin:'auto'}} className="align-bottom mt-2" >
+              <nav style={{ width: '95%', margin: 'auto' }} className="align-bottom mt-2" >
                 <ul className="pagination pagination-sm" >
-                  <li className="page-item"><a className={["page-link", paginationItemStyle].join(' ')} href="/">Previous</a></li>
-                  <li className="page-item"><a className={["page-link", paginationItemStyle].join(' ')} href="/">1</a></li>
-                  <li className="page-item"><a className={["page-link", paginationItemStyle].join(' ')} href="/">2</a></li>
-                  <li className="page-item"><a className={["page-link", paginationItemStyle].join(' ')} href="/">3</a></li>
-                  <li className="page-item"><a className={["page-link", paginationItemStyle].join(' ')} href="/">Next</a></li>
+                  <li className="page-item"><a className={["page-link", paginationItemStyle].join(' ')}>Previous</a></li>
+                  <li className="page-item"><a className={["page-link", paginationItemStyle].join(' ')}>1</a></li>
+                  {/* <li className="page-item"><a className={["page-link", paginationItemStyle].join(' ')} href="/">2</a></li> */}
+                  {/* <li className="page-item"><a className={["page-link", paginationItemStyle].join(' ')} href="/">3</a></li> */}
+                  <li className="page-item"><a className={["page-link", paginationItemStyle].join(' ')}>Next</a></li>
                 </ul>
               </nav>
             </div> : null
           }
 
         </div>
-        <WidgetDetails 
-          selectedData={this.state.selectedData} 
+        <WidgetDetails
+          selectedData={this.state.selectedData}
           showed={this.state.showWidgetDetails}
-          closedWiget={this.closeWidgetDetailsHandler} 
+          closedWiget={this.closeWidgetDetailsHandle}
         />
       </Aux>
     );
