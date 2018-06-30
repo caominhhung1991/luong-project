@@ -22,7 +22,18 @@ export default class WidgetDetails extends Component {
                 <h4 className="widget-lythuyet__text">Lý thuyết:</h4>
                 <div id="ghichu-lythuyet-images">
                   <div>
-                    <img className="widget-lythuyet__image" src="./../test.png" alt="congthuc"/>
+                    {
+                      this.props.data.images.map(image => {
+                        return (
+                          <img 
+                            className="widget-lythuyet__image" 
+                            src={`./../upload/${this.props.data.url}/${image}`} 
+                            alt="congthuc"
+                          />
+                        )
+                      })
+                    }
+                    
                   </div>
                 </div>
               </div>
