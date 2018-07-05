@@ -19,7 +19,7 @@ const Bai = (props) => {
         <div className="input-group-prepend">
           <button
             type="button" 
-            className={[props.congthucStyle, "btn"].join(' ')}
+            className={["btn", props.congthucStyle].join(' ')}
             name="choosedBai"
             onClick={props.switchChooseHandle}
           ><i className={props.iconBai}></i> bài</button>

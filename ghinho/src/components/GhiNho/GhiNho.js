@@ -6,6 +6,7 @@ import DragAndTouch from '../../services/DragAndTouch';
 import instanceAxios from '../../axios-orders';
 import Aux from '../../hoc/_Aux/_Aux';
 import WidgetDetails from './WidgetDetails/WidgetDetails';
+import Pagination from '../Pagination/Pagination';
 
 class GhiNho extends Component {
   dragAndTouch = new DragAndTouch();
@@ -16,9 +17,13 @@ class GhiNho extends Component {
     haveData: false,
     showData: false,
     congthuc: true,
+    showWidgetDetails: false,
     datas: [],
+    currentDatas: [],
     selectedData: {},
-    showWidgetDetails: false
+    selectedPageNum: 0,
+    numItemsOfPage: 5,
+
   }
 
   componentDidMount() {
@@ -42,12 +47,8 @@ class GhiNho extends Component {
   }
 
   dataHandle = (url) => {
-    // console.log('/api/congthuc/Toán/Lớp/Lớp 10/Chương 1/Bài 1')
-    console.log(url)
-    // return 0;
     instanceAxios.get(url)
       .then(res => {
-        console.log(res.data)
         this.setState({
           ...this.state,
           haveData: true,
@@ -144,7 +145,31 @@ class GhiNho extends Component {
     })
   }
 
+  selectPage = (pageNum) => {
+    console.log(pageNum)
+    this.setState({
+      selectedPageNum: pageNum
+    })
+  }
 
+  prevPage = (event) => {
+    event.preventDefault();
+    let selectedPageNum = this.state.selectedPageNum;
+    if (selectedPageNum > 0) {
+      this.setState({
+        selectedPageNum: selectedPageNum - 1
+      })
+    }
+  }
+
+  nextPage = (nums) => {
+    let selectedPageNum = this.state.selectedPageNum;
+    if (selectedPageNum < nums - 1) {
+      this.setState({
+        selectedPageNum: selectedPageNum + 1
+      })
+    }
+  }
 
   render() {
     let ghiNhoContentStyle = this.state.congthuc ? 'light-yellow' : 'light-green';
@@ -155,12 +180,19 @@ class GhiNho extends Component {
         <span className="tooltiptext">Bỏ ghim</span>
       </div>
     );
+    let currentDatas = [...this.state.datas];
 
     if (this.state.ghim === false) {
       ghim = <div className="tooltip_">
         <i id="ghim-ghinho" className="fa fa-thumb-tack" onClick={this.ghimHandle}></i>
         <span className="tooltiptext">Ghim</span>
       </div>
+    }
+
+    if (this.state.datas.length > 0) {
+      currentDatas = currentDatas.splice(this.state.selectedPageNum * this.state.numItemsOfPage, this.state.numItemsOfPage)
+      console.log(currentDatas)
+      console.log(this.state.selectedPageNum)
     }
 
     return (
@@ -177,15 +209,15 @@ class GhiNho extends Component {
           </div>
           {this.state.showGhiNho ?
             <div id="ghinho__content" className={["ghinho__content"].join(' ')}>
-              <GhiNhoContent 
-                dataHandle={this.dataHandle} 
-                switchedCongThuc={this.switchCongThucHandle} 
+              <GhiNhoContent
+                dataHandle={this.dataHandle}
+                switchedCongThuc={this.switchCongThucHandle}
               />
 
               {
                 this.state.haveData === true ?
                   <Datas
-                    datas={this.state.datas}
+                    datas={currentDatas}
                     clicked={this.showDataHandle}
                     selectedData={this.selectedDataHandle}
 
@@ -193,15 +225,15 @@ class GhiNho extends Component {
                   : <div style={{ width: '95%', margin: 'auto' }}>Chưa có data</div>
               }
 
-              <nav style={{ width: '95%', margin: 'auto' }} className="align-bottom mt-2" >
-                <ul className="pagination pagination-sm" >
-                  <li className="page-item"><a className={["page-link", paginationItemStyle].join(' ')}>Previous</a></li>
-                  <li className="page-item"><a className={["page-link", paginationItemStyle].join(' ')}>1</a></li>
-                  {/* <li className="page-item"><a className={["page-link", paginationItemStyle].join(' ')} href="/">2</a></li> */}
-                  {/* <li className="page-item"><a className={["page-link", paginationItemStyle].join(' ')} href="/">3</a></li> */}
-                  <li className="page-item"><a className={["page-link", paginationItemStyle].join(' ')}>Next</a></li>
-                </ul>
-              </nav>
+              <Pagination
+                paginationItemStyle={paginationItemStyle}
+                datas={this.state.datas}
+                numItemsOfPage={this.state.numItemsOfPage}
+                selectPage={this.selectPage}
+                prevPage={this.prevPage}
+                nextPage={this.nextPage}
+
+              />
             </div> : null
           }
 

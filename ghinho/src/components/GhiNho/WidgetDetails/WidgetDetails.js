@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import './WidgetDetails.scss';
 import Aux from '../../../hoc/_Aux/_Aux';
-import axios from 'axios';
 export default class WidgetDetails extends Component {
 
   render() {
     // axios.get('./../upload/hinh/p')
-    console.log(this.props)
+    console.log(this.props.selectedData)
     return (
       <Aux>
         {
@@ -23,17 +22,17 @@ export default class WidgetDetails extends Component {
                 <div id="ghichu-lythuyet-images">
                   <div>
                     {
-                      this.props.data.images.map(image => {
+                      this.props.selectedData.images.map(image => {
                         return (
-                          <img 
-                            className="widget-lythuyet__image" 
-                            src={`./../upload/${this.props.data.url}/${image}`} 
+                          <img
+                            key={`hinh`+this.props.selectedData._id}
+                            className="widget-lythuyet__image"
+                            src={`./../upload/hinh/${this.props.selectedData.url}/${image}`}
                             alt="congthuc"
                           />
                         )
                       })
                     }
-                    
                   </div>
                 </div>
               </div>
@@ -43,9 +42,16 @@ export default class WidgetDetails extends Component {
                   Video giải thích và Ví dụ: <button className="btn btn-sm btn-success">Mở video (-500C)</button>
                 </h4>
                 <div id="ghichu-videos">
-                  <video className="widget-lythuyet__video" controls>
-                    <source src="http://hocwebchuan.com/reference/tag/example/movie/coutdown.ogv" type="video/mp4" />
-                  </video>
+                  {
+                    this.props.selectedData.videos.map(video => {
+                      return (
+                        <video key={`video`+this.props.selectedData._id} className="widget-lythuyet__video" controls>
+                          <source src={`./../upload/video/${this.props.selectedData.url}/${video}`} type="video/mp4" />
+                        </video>
+                      )
+                    })
+                  }
+
                 </div>
               </div>
             </div>

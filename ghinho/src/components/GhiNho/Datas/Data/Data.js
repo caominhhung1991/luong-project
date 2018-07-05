@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Data = (props) => {
-  console.log(props.data)
+  // console.log(props.data)
   let badgeStyle = props.data.method === 'phương pháp' ? 'badge-success': 'badge-warning';
   return (
     <li 

@@ -88,7 +88,7 @@ class GhiNhoContent extends Component {
   }
 
   render() {
-    let congthucStyle = this.state.congthuc === 'Công thức' ? "btn-warning" : null;
+    let congthucStyle = this.state.congthuc === 'Công thức' ? "btn-warning" : "btn-success";
     let iconChuong = this.state.choosedChuong ? "fa fa-check" : 'fa fa-times';
     let iconBai = this.state.choosedBai ? "fa fa-check" : 'fa fa-times';
 

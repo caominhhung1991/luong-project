@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Data from './Data/Data';
 
 export default class Datas extends Component {
+  
   render() {
     return (
       <ul className="list-group">
