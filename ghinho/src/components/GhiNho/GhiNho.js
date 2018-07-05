@@ -18,6 +18,8 @@ class GhiNho extends Component {
     showData: false,
     congthuc: true,
     showWidgetDetails: false,
+    showLyThuyet: true,
+    showVideo: false,
     datas: [],
     currentDatas: [],
     selectedData: {},
@@ -31,7 +33,8 @@ class GhiNho extends Component {
     this.ghinhoheader = document.getElementById('ghinhoheader');
     this.widgetGhinho = document.getElementById('widget-ghinho');
     this.dragAndTouch.dragElement(this.ghinho, this.widgetGhinho);
-    localStorage.setItem('showWidget', 'false')
+    this.ghiNhoPagination = document.getElementById('ghinho-pagination');
+    localStorage.setItem('showWidget', 'false');
   }
 
   ghimHandle = () => {
@@ -52,7 +55,8 @@ class GhiNho extends Component {
         this.setState({
           ...this.state,
           haveData: true,
-          datas: res.data.data
+          datas: res.data.data,
+          selectedPageNum: 0
         })
       }, err => { console.log(err) })
       .catch(err => {
@@ -60,7 +64,8 @@ class GhiNho extends Component {
         this.setState({
           ...this.state,
           haveData: false,
-          datas: null
+          datas: null,
+          selectedPageNum: 0
         })
       })
   }
@@ -133,7 +138,8 @@ class GhiNho extends Component {
     this.setState({
       ...this.state,
       selectedData: data,
-      showWidgetDetails: true
+      showWidgetDetails: true,
+      showVideo: false,
     })
   }
 
@@ -146,9 +152,9 @@ class GhiNho extends Component {
   }
 
   selectPage = (pageNum) => {
-    console.log(pageNum)
     this.setState({
-      selectedPageNum: pageNum
+      selectedPageNum: pageNum,
+      showVideo: false,
     })
   }
 
@@ -171,6 +177,18 @@ class GhiNho extends Component {
     }
   }
 
+  showLyThuyetHandle = () => {
+    this.setState({
+      showLyThuyet: !this.state.showLyThuyet
+    })
+  }
+
+  showVideoHandle = () => {
+    this.setState({
+      showVideo: !this.state.showVideo
+    })
+  }
+
   render() {
     let ghiNhoContentStyle = this.state.congthuc ? 'light-yellow' : 'light-green';
     let paginationItemStyle = this.state.congthuc ? 'bg-warning text-dark' : 'bg-success text-white';
@@ -191,8 +209,6 @@ class GhiNho extends Component {
 
     if (this.state.datas.length > 0) {
       currentDatas = currentDatas.splice(this.state.selectedPageNum * this.state.numItemsOfPage, this.state.numItemsOfPage)
-      console.log(currentDatas)
-      console.log(this.state.selectedPageNum)
     }
 
     return (
@@ -227,6 +243,7 @@ class GhiNho extends Component {
 
               <Pagination
                 paginationItemStyle={paginationItemStyle}
+                selectedPageNum={this.state.selectedPageNum}
                 datas={this.state.datas}
                 numItemsOfPage={this.state.numItemsOfPage}
                 selectPage={this.selectPage}
@@ -239,6 +256,10 @@ class GhiNho extends Component {
 
         </div>
         <WidgetDetails
+          showLyThuyet={this.state.showLyThuyet}
+          showVideo={this.state.showVideo}
+          showVideoHandle={this.showVideoHandle}
+          showLyThuyetHandle={this.showLyThuyetHandle}
           selectedData={this.state.selectedData}
           showed={this.state.showWidgetDetails}
           closedWiget={this.closeWidgetDetailsHandle}

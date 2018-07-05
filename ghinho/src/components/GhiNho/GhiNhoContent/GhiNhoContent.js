@@ -65,13 +65,27 @@ class GhiNhoContent extends Component {
         [event.target.name]: !choosed,
         choosedBai: !choosed,
       })
+      this.onSubmitHandleChuongBai(!choosed, !choosed);
     } else {
       this.setState({
         ...this.setState,
         choosedChuong: true,
         [event.target.name]: !choosed
       })
+      this.onSubmitHandleChuongBai(true, !choosed);
     }
+  }
+
+  onSubmitHandleChuongBai = (_chuong, _bai) => {
+    let loai = this.state.congthuc === 'Công thức' ? 'congthuc' : 'phuongphap';
+    let lop = this.state.chuyende ? 'empty' : this.state.lop;
+    let chuong = this.state.chuyende || !_chuong ? 'empty' : this.state.chuong;
+    let bai = this.state.chuyende || !_bai ? 'empty' : this.state.bai;
+    let lopChuyenDe = this.state.chuyende ? 'Chuyên đề' : 'Lớp';
+
+    let url = `/api/${loai}/${this.state.mon}/${lopChuyenDe}/${lop}/${chuong}/${bai}`;
+    console.log(url)
+    this.props.dataHandle(url.trim());
   }
 
   onSubmitHandle = (event) => {

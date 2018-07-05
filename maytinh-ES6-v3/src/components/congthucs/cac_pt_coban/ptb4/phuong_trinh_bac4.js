@@ -165,9 +165,9 @@ export default class PhuongTrinhBac4 {
       <p class='nghiem-bac4'>\\({t_2} = \\frac{{ - b + \\sqrt \\Delta  }}{{2a}} = \\frac{{ ${-this.b} + \\sqrt ${this.delta} }}{{${2*this.a}}} ${Service.bang(this.X2)} ${this.X2}\\)</p>
       <p class='nghiem-bac4'>* Vì \\(\\frac{{ - b - \\sqrt \\Delta  }}{{2a}} \\ge 0\\) và \\(\\frac{{ - b - \\sqrt \\Delta  }}{{2a}} \\ge 0 \\Rightarrow\\) <span class='color-red'>(1)</span> có nghiệm:</p>
       <p class='nghiem-bac4'>
-      \\(x1 =  \\pm \\sqrt {\\frac{{ - b - \\sqrt \\Delta  }}{{2a}}}  =  \\pm \\sqrt {\\frac{{ ${-this.b} - \\sqrt {${this.delta}}  }}{{${2*this.a}}}} ${Service.bang(this.x1)} ${this.x !== 0 ? '\\pm': ''} ${Service.round(this.x1, 7)}\\)</p>
+      \\(x =  \\pm \\sqrt {\\frac{{ - b - \\sqrt \\Delta  }}{{2a}}}  =  \\pm \\sqrt {\\frac{{ ${-this.b} - \\sqrt {${this.delta}}  }}{{${2*this.a}}}} ${Service.bang(this.x1)} ${this.x1 !== 0 ? '\\pm': ''} ${Service.round(this.x1, 7)}\\)</p>
       <p class='nghiem-bac4'>
-        \\(x2 =  \\pm \\sqrt {\\frac{{ - b + \\sqrt \\Delta  }}{{2a}}}  =  \\pm \\sqrt {\\frac{{ ${-this.b} + \\sqrt {${this.delta}}  }}{{${2*this.a}}}} ${Service.bang(this.x2)} ${this.x !== 0 ? '\\pm': ''} ${Service.round(this.x2, 7)}\\)</p>`;
+        \\(x =  \\pm \\sqrt {\\frac{{ - b + \\sqrt \\Delta  }}{{2a}}}  =  \\pm \\sqrt {\\frac{{ ${-this.b} + \\sqrt {${this.delta}}  }}{{${2*this.a}}}} ${Service.bang(this.x2)} ${this.x2 !== 0 ? '\\pm': ''} ${Service.round(this.x2, 7)}\\)</p>`;
     }
 
     result.innerHTML = s;
@@ -285,8 +285,10 @@ export default class PhuongTrinhBac4 {
       s = `<hr>
           <p class='nghiem-bac4'><b class='color-red'>Đề bài:</b> (${this.a})x<sup>4</sup> + (${this.b})x<sup>2</sup> + (${this.c}) = 0</p>
           <p class='nghiem-bac4'><b class='color-red'>Kết quả:</b> ${kq}</p>
-          <p class='nghiem-bac4'>${this.bac4__TH5__x1.outerHTML}${this.x1}</p>
-          <p class='nghiem-bac4'>${this.bac4__TH5__x2.outerHTML}${this.x2}</p>`;
+          <p class='nghiem-bac4'>
+      \\(x =  \\pm \\sqrt {\\frac{{ - b - \\sqrt \\Delta }}{{2a}}} ${Service.bang(this.x1)} ${this.x1 !== 0 ? '\\pm': ''} ${Service.round(this.x1, 7)}\\)</p>
+      <p class='nghiem-bac4'>
+        \\(x =  \\pm \\sqrt {\\frac{{ - b + \\sqrt \\Delta }}{{2a}}} ${Service.bang(this.x2)} ${this.x2 !== 0 ? '\\pm': ''} ${Service.round(this.x2, 7)}\\)</p>`;
     }
     result.innerHTML = s;
     return result;
