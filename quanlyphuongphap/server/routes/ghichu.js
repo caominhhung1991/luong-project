@@ -116,9 +116,9 @@ router.get('/method/:id', (req, res, next) => {
                 let images = "";
                 for (let image of method[0].images) {
                     images +=
-                        `<div>
-    <img class="ghichu-lythuyet-image" src="upload/hinh/${image}">
-</div>`
+                                        `<div>
+                    <img class="ghichu-lythuyet-image" src="upload/hinh/${image}">
+                </div>`
                 }
 
                 let videos = "";

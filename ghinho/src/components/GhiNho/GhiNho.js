@@ -25,7 +25,7 @@ class GhiNho extends Component {
     selectedData: {},
     selectedPageNum: 0,
     numItemsOfPage: 5,
-
+    contentBaoSai: ''
   }
 
   componentDidMount() {
@@ -68,6 +68,16 @@ class GhiNho extends Component {
           selectedPageNum: 0
         })
       })
+  }
+
+  baoLoiHandle = (baoloi) => {
+    const url = `/ghichu/baoloi`;
+    instanceAxios.post(url, baoloi).then(res => {
+      console.log(res.data)
+      this.setState({
+        contentBaoSai: ''
+      })
+    })
   }
 
   showDataHandle = (event) => {
@@ -189,6 +199,12 @@ class GhiNho extends Component {
     })
   }
 
+  onChangeValue = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
   render() {
     let ghiNhoContentStyle = this.state.congthuc ? 'light-yellow' : 'light-green';
     let paginationItemStyle = this.state.congthuc ? 'bg-warning text-dark' : 'bg-success text-white';
@@ -261,9 +277,13 @@ class GhiNho extends Component {
           showVideoHandle={this.showVideoHandle}
           showLyThuyetHandle={this.showLyThuyetHandle}
           selectedData={this.state.selectedData}
+          contentBaoSai={this.state.contentBaoSai}
           showed={this.state.showWidgetDetails}
           closedWiget={this.closeWidgetDetailsHandle}
+          baoLoiHandle={this.baoLoiHandle}
+          onChangeValue={this.onChangeValue}
         />
+        
       </Aux>
     );
   }

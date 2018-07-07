@@ -19,7 +19,7 @@ const Chuong = (props) => {
           <button 
             className={[props.congthucStyle, "btn"].join(' ')}
             name="choosedChuong"
-            onClick={props.switchChooseHandle}
+            onClick={(event) => props.switchChooseHandle(event, 'choosedChuong')}
           ><i className={props.iconChuong}></i> Chương</button>
         </div>
         <select

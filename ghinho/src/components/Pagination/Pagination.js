@@ -14,7 +14,6 @@ const propTypes = {
 
 class Pagination extends Component {
   pages = (nums) => {
-    console.log(nums)
     let pages = [];
     for (let i = 1; i <= nums; i++) {
       if(i===this.props.selectedPageNum+1) {

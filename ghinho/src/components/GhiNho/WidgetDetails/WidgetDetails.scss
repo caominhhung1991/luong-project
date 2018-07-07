@@ -55,3 +55,9 @@
     transform: scale(1.2)
   }
 }
+
+details {
+  &:focus {
+    outline: none;
+  }
+}

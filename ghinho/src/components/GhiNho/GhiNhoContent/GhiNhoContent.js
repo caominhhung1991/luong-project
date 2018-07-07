@@ -39,7 +39,6 @@ class GhiNhoContent extends Component {
     event.preventDefault();
     event.stopPropagation();
     this.setState({
-      ...this.state,
       chuyende: !this.state.chuyende
     })
   }
@@ -49,30 +48,39 @@ class GhiNhoContent extends Component {
     console.log(event.target.textContent)
     let text = this.state.congthuc === 'Công thức' ? 'Phương pháp' : 'Công thức';
     this.setState({
-      ...this.state,
-      congthuc: text
+      congthuc: text,
+      choosedChuong: true,
+      choosedBai: true
+
     })
     this.props.switchedCongThuc(this.state.congthuc);
   }
 
-  switchChooseHandle = (event) => {
+  switchChooseHandle = (event, choosed) => {
+    console.log(choosed)
     event.preventDefault();
-    let choosed = this.state[event.target.name];
+    // event.stopPropagation();
+    let choosedValue = this.state[choosed];
+    console.log(choosedValue)
     // console.log(event.target.name)
-    if (event.target.name === 'choosedChuong') {
-      this.setState({
-        ...this.setState,
-        [event.target.name]: !choosed,
-        choosedBai: !choosed,
-      })
-      this.onSubmitHandleChuongBai(!choosed, !choosed);
-    } else {
-      this.setState({
-        ...this.setState,
-        choosedChuong: true,
-        [event.target.name]: !choosed
-      })
-      this.onSubmitHandleChuongBai(true, !choosed);
+    switch (choosed) {
+      case 'choosedChuong': {
+        console.log(event.target.name)
+        this.setState({
+          [choosed]: !choosedValue,
+          choosedBai: false,
+        })
+        this.onSubmitHandleChuongBai(!choosedValue, false);
+        break;
+      }
+      default: {
+        this.setState({
+          choosedChuong: true,
+          [choosed]: !choosedValue
+        })
+        this.onSubmitHandleChuongBai(true, !choosedValue);
+        break;
+      }
     }
   }
 

@@ -21,8 +21,10 @@ const Bai = (props) => {
             type="button" 
             className={["btn", props.congthucStyle].join(' ')}
             name="choosedBai"
-            onClick={props.switchChooseHandle}
-          ><i className={props.iconBai}></i> bài</button>
+            onClick={(event) => props.switchChooseHandle(event, 'choosedBai')}
+          ><i 
+            className={props.iconBai}
+          ></i> bài</button>
         </div>
         <select name="bai" id="bai" 
           className="form-control"
