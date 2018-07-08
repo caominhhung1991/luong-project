@@ -36,7 +36,7 @@ class MayTinh {
 	 * ontouchmove
 	 * ontouchend
 	 * ontouchecancel
-	 */
+	 */ 
 
 	touchElement(element) {
 		let touchedZone = element.querySelector('#maytinhheader');

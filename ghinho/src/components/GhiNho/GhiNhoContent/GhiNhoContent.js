@@ -22,15 +22,15 @@ class GhiNhoContent extends Component {
     chuong: 'Chương 1',
     bai: 'Bài 1',
     chuyende: false,
-    congthuc: 'Công thức',
+    congthuc: 'Phương Pháp',
     choosedChuong: true,
     choosedBai: true
   }
 
   onChangeHandle = (event) => {
     console.log(event.target.value)
+    console.log(event.target.value)
     this.setState({
-      ...this.state,
       [event.target.name]: event.target.value
     })
   }
@@ -45,8 +45,10 @@ class GhiNhoContent extends Component {
 
   switchCongThucHandle = (event) => {
     event.preventDefault();
-    console.log(event.target.textContent)
+    event.stopPropagation();
     let text = this.state.congthuc === 'Công thức' ? 'Phương pháp' : 'Công thức';
+    console.log(event.target.textContent);
+    console.log(text);
     this.setState({
       congthuc: text,
       choosedChuong: true,
@@ -161,7 +163,6 @@ class GhiNhoContent extends Component {
         <Search dataHandle={this.props.dataHandle} />
         <form className="Form" onSubmit={this.onSubmitHandle}>
           <div className="row">
-
 
             <Mon
               congthucStyle={congthucStyle}

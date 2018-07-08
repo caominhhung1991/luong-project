@@ -15,7 +15,7 @@ const Mon = (props) => {
         <div className="input-group-prepend">
           <button className={[props.congthucStyle, "btn btn-switch"].join(' ')} disabled><i className='fa fa-check'></i> Môn</button>
         </div>
-        <select name="mon" id="mon" className="form-control" onChange={this.onChangeHandle}>
+        <select name="mon" id="mon" className="form-control" onChange={props.onChangeHandle}>
           <option value="Toán">Toán</option>
           <option value="Hóa">Hóa</option>
           <option value="Lý">Lý</option>

@@ -54,7 +54,6 @@ class ModalBaoSai extends Component {
                   </div>
                 </div>
 
-
                 <div className="form-group">
                   <label>Tên {this.props.selectedData.method}:</label>
                   <input type="text" className="form-control form-control-sm" value={this.props.selectedData.title} />

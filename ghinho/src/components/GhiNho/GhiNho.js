@@ -13,10 +13,10 @@ class GhiNho extends Component {
   showGhiNho = true;
   state = {
     ghim: true,
-    showGhiNho: true,
+    showGhiNho: false,
     haveData: false,
     showData: false,
-    congthuc: true,
+    congthuc: false,
     showWidgetDetails: false,
     showLyThuyet: true,
     showVideo: false,
@@ -32,9 +32,16 @@ class GhiNho extends Component {
     this.ghinho = document.getElementById("ghinho");
     this.ghinhoheader = document.getElementById('ghinhoheader');
     this.widgetGhinho = document.getElementById('widget-ghinho');
-    this.dragAndTouch.dragElement(this.ghinho, this.widgetGhinho);
     this.ghiNhoPagination = document.getElementById('ghinho-pagination');
     localStorage.setItem('showWidget', 'false');
+    const isMobile = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|webOS|BlackBerry|IEMobile|Opera Mini)/i);
+    if(isMobile === null) {
+      this.dragAndTouch.dragElement(this.ghinho, this.widgetGhinho);
+    } else {
+      console.log('mobile')
+      this.dragAndTouch.touchElement(this.ghinho, this.widgetGhinho);
+    }
+    
   }
 
   ghimHandle = () => {
@@ -83,7 +90,6 @@ class GhiNho extends Component {
   showDataHandle = (event) => {
     alert(event.target.innerHTML)
     this.setState({
-      ...this.state,
       showData: !this.state.showData
     })
   }
@@ -91,11 +97,11 @@ class GhiNho extends Component {
   showGhiNho = (event) => {
     event.stopPropagation();
     this.ghinho.classList.toggle('animate')
+    console.log('show ghi nhớ')
     // this.ghinhoheader.o
     if (this.state.showGhiNho === true) {
       this.checkWidthHeight_GhiNho(this.ghinho, 95, 45);
       this.setState({
-        ...this.state,
         showGhiNho: !this.state.showGhiNho,
         showWidgetDetails: false
       })
@@ -103,13 +109,11 @@ class GhiNho extends Component {
       this.checkWidthHeight_GhiNho(this.ghinho, 400, 45);
       if (localStorage.getItem('showWidget') === 'true') {
         this.setState({
-          ...this.state,
           showGhiNho: !this.state.showGhiNho,
           showWidgetDetails: true
         })
       } else {
         this.setState({
-          ...this.state,
           showGhiNho: !this.state.showGhiNho
         })
       }
@@ -135,10 +139,10 @@ class GhiNho extends Component {
   }
 
   switchCongThucHandle = (congthuc) => {
-    let check = congthuc === 'Công thức'
+    let check = congthuc === 'Công thức';
+    console.log(congthuc, check)
     this.setState({
-      ...this.state,
-      congthuc: !check
+      // congthuc: !check
     })
   }
 
@@ -146,7 +150,6 @@ class GhiNho extends Component {
   selectedDataHandle = (data) => {
     localStorage.setItem('showWidget', 'true');
     this.setState({
-      ...this.state,
       selectedData: data,
       showWidgetDetails: true,
       showVideo: false,
@@ -206,8 +209,8 @@ class GhiNho extends Component {
   }
 
   render() {
-    let ghiNhoContentStyle = this.state.congthuc ? 'light-yellow' : 'light-green';
-    let paginationItemStyle = this.state.congthuc ? 'bg-warning text-dark' : 'bg-success text-white';
+    let ghiNhoContentStyle = this.state.congthuc ? 'light-yellow' : 'light-info';
+    let paginationItemStyle = this.state.congthuc ? 'bg-warning text-dark' : 'bg-info text-white';
     let ghim = (
       <div className="tooltip_">
         <i id="ghim-ghinho" className="fa fa-thumb-tack ghimChecked" onClick={this.ghimHandle}></i>
@@ -229,7 +232,7 @@ class GhiNho extends Component {
 
     return (
       <Aux>
-        <div id="ghinho" className={ghiNhoContentStyle}>
+        <div id="ghinho" className={[ghiNhoContentStyle, 'animate'].join(' ')}>
           <div id="ghinhoheader">
             <label className="custom-check" >
               <input type="checkbox" name="onOff" onClick={this.showGhiNho} />

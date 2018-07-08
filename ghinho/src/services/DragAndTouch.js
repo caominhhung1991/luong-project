@@ -9,9 +9,69 @@ export default class DragAndTouch {
     let header = element.id + 'header';
     this.widgetCordinatesHandle();
     if (document.getElementById(header)) {
-      document.getElementById(header).onmousedown = (event) => { this.dragMouseDown(event, element) };
+      document.getElementById(header).onmousedown = (event) => {
+        this.dragMouseDown(event, element)
+      };
     } else {
-      element.onmousedown = (event) => { this.dragMouseDown(event, element) };
+      element.onmousedown = (event) => {
+        this.dragMouseDown(event, element)
+      };
+    }
+  }
+
+  touchElement = (element, widget) => {
+    this.element = element;
+    this.widget = widget;
+    let touchedZone = element.querySelector('#ghinhoheader');
+    localStorage.setItem('GHIM_GHINHO_TOGGLE', 'true');
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    // console.log(touchedZone)
+    touchedZone.ontouchstart = (event) => {
+      pos3 = event.touches[0].clientX;
+      pos4 = event.touches[0].clientY;
+      touchedZone.ontouchmove = (e) => {
+        pos1 = pos3 - e.changedTouches[0].clientX;
+        pos2 = pos4 - e.changedTouches[0].clientY;
+        pos3 = e.changedTouches[0].clientX;
+        pos4 = e.changedTouches[0].clientY;
+        element.style.top = (element.offsetTop - pos2) + 'px';
+        element.style.left = (element.offsetLeft - pos1) + 'px';
+        this.widgetCordinatesHandle();
+        if (localStorage.getItem('GHIM_GHINHO_TOGGLE') === 'true') {
+          touchedZone.ontouchend = (e) => {
+            let width = window.innerWidth;
+            let left = element.offsetLeft + element.offsetHeight / 2;
+            if (left <= width / 2) {
+              element.style.left = '0px';
+            } else {
+              element.style.left = (width - element.offsetWidth - this.MARGIN) + 'px';
+            }
+
+            let topGhiNho = element.offsetTop;
+            let leftGhiNho = element.offsetLeft;
+            if (topGhiNho < this.MARGIN) {
+              element.style.top = '0px';
+            } else if (topGhiNho + element.offsetHeight + this.MARGIN > window.innerHeight) {
+              element.style.top = (window.innerHeight - element.offsetHeight - this.MARGIN) + 'px';
+            }
+
+            if (leftGhiNho < this.MARGIN) {
+              element.style.left = '0px';
+            } else if (leftGhiNho + element.offsetWidth + this.MARGIN > window.innerWidth) {
+              element.style.left = (window.innerWidth - element.offsetWidth - this.MARGIN) + 'px';
+            }
+            this.widgetCordinatesHandle();
+            touchedZone.onmousemove = null;
+            touchedZone.ontouchend = null;
+          }
+        } else {
+          touchedZone.ontouchend = () => {
+            touchedZone.ontouchmove = null;
+            touchedZone.ontouchend = null;
+            this.widgetCordinatesHandle();
+          }
+        }
+      }
     }
   }
 
@@ -26,7 +86,7 @@ export default class DragAndTouch {
       this.widget.style.top = e_top + 'px';
       if (e_where_width <= window.innerWidth / 2) {
         this.widget.style.left = e_left + e_width + 'px';
-      } else { 
+      } else {
         this.widget.style.left = e_left - e_width + 'px';
       }
     } else { // trường hợp <= 767.98 - medium size 
@@ -98,4 +158,5 @@ export default class DragAndTouch {
     }
     this.widgetCordinatesHandle();
   }
+
 }
